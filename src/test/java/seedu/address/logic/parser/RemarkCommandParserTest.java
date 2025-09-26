@@ -39,6 +39,6 @@ public class RemarkCommandParserTest {
         assertParseFailure(parser, RemarkCommand.COMMAND_WORD, expectedMessage);
 
         // No Index
-        assertParseFailure(parser, RemarkCommand.COMMAND_WORD + " "  + nonEmptyRemark, expectedMessage);
+        assertParseFailure(parser, RemarkCommand.COMMAND_WORD + " " + nonEmptyRemark, expectedMessage);
     }
 }
