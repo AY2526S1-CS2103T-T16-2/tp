@@ -12,13 +12,15 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
+    private final Company company;
     private final Email email;
 
     // Data fields
@@ -28,10 +30,11 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Company company, Email email, Address address, Set<Tag> tags) {
+        requireAllNonNull(name, phone, company, email, address, tags);
         this.name = name;
         this.phone = phone;
+        this.company = company;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
@@ -45,6 +48,10 @@ public class Person {
         return phone;
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
     public Email getEmail() {
         return email;
     }
@@ -54,7 +61,8 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag set, which throws
+     * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
@@ -92,6 +100,7 @@ public class Person {
         Person otherPerson = (Person) other;
         return name.equals(otherPerson.name)
                 && phone.equals(otherPerson.phone)
+                && company.equals(otherPerson.company)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && tags.equals(otherPerson.tags);
@@ -100,7 +109,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, company, email, address, tags);
     }
 
     @Override
@@ -108,6 +117,7 @@ public class Person {
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
+                .add("company", company)
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
