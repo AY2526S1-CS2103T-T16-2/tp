@@ -23,7 +23,6 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Company company;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
