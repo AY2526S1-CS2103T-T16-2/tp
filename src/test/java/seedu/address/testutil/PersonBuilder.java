@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -19,12 +20,14 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_COMPANY = "Shopee";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "uncontacted";
 
     private Name name;
     private Phone phone;
+    private Company company;
     private Email email;
     private Address address;
     private Status status;
@@ -36,6 +39,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
+        company = new Company(DEFAULT_COMPANY);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         status = new Status(DEFAULT_STATUS);
@@ -48,6 +52,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
+        company = personToCopy.getCompany();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
@@ -63,9 +68,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -87,6 +93,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Company} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCompany(String company) {
+        this.company = new Company(company);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Person} that we are building.
      */
     public PersonBuilder withEmail(String email) {
@@ -103,7 +117,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, status, tags);
+        return new Person(name, phone, company, email, address, status, tags);
     }
 
 }

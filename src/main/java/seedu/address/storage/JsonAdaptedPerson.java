@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -27,6 +28,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
+    private final String company;
     private final String email;
     private final String address;
     private final String status;
@@ -37,10 +39,12 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+            @JsonProperty("company") String company,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("status") String status, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
+        this.company = company;
         this.email = email;
         this.address = address;
         this.status = status;
@@ -55,6 +59,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        company = source.getCompany().companyName;
         email = source.getEmail().value;
         address = source.getAddress().value;
         status = source.getStatus().value;
@@ -64,9 +69,11 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted person object into the model's
+     * {@code Person} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in
+     *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -89,6 +96,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
+
+        if (company == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
+        }
+        if (!Company.isValidCompanyName(company)) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Company modelCompany = new Company(company);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
@@ -115,7 +130,7 @@ class JsonAdaptedPerson {
         final Status modelStatus = new Status(status);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStatus, modelTags);
+        return new Person(modelName, modelPhone, modelCompany, modelEmail, modelAddress, modelStatus, modelTags);
     }
 
 }
