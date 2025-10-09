@@ -24,19 +24,21 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Company company;
     private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Company company, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Company company, Email email, Address address, Status status, Set<Tag> tags) {
         requireAllNonNull(name, phone, company, email, address, status, tags);
         this.name = name;
         this.phone = phone;
         this.company = company;
         this.email = email;
         this.address = address;
+        this.company = company;
         this.status = status;
         this.tags.addAll(tags);
     }
@@ -61,6 +63,9 @@ public class Person {
         return address;
     }
 
+    public Company getCompany() {
+        return company;
+      
     public Status getStatus() {
         return status;
     }
@@ -125,6 +130,7 @@ public class Person {
                 .add("company", company)
                 .add("email", email)
                 .add("address", address)
+                .add("company", company)
                 .add("status", status)
                 .add("tags", tags)
                 .toString();
