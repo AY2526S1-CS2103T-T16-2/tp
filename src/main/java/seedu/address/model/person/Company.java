@@ -3,43 +3,33 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-/**
- * Represents a Person's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidCompany(String)} (String)
- */
 public class Company {
-
-    public static final String MESSAGE_CONSTRAINTS = "Company name can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Company should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the company must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String value;
+    public final String companyName;
 
-    /**
-     * Constructs an {@code Address}.
-     *
-     * @param company A valid company name.
-     */
-    public Company(String company) {
-        requireNonNull(company);
-        checkArgument(isValidCompany(company), MESSAGE_CONSTRAINTS);
-        value = company;
+    public Company(String name) {
+        requireNonNull(name);
+        checkArgument(isValidCompanyName(name), MESSAGE_CONSTRAINTS);
+        this.companyName = name;
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid company name.
      */
-    public static boolean isValidCompany(String test) {
+    public static boolean isValidCompanyName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
-        return value;
+        return companyName;
     }
 
     @Override
@@ -53,13 +43,12 @@ public class Company {
             return false;
         }
 
-        Company otherCompany = (Company) other;
-        return value.equals(otherCompany.value);
+        Company otherName = (Company) other;
+        return companyName.equals(otherName.companyName);
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return companyName.hashCode();
     }
-
 }
