@@ -283,7 +283,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 sales representatives will have more efficient control over tracking their client interaction and progress,
 thereby improving their operational efficiency
 
@@ -317,7 +317,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | sales representative with clients that can be easily stratified              | group related clients together                                                                | manage clients that are related to each other more easily                                        |
 | `* *`   | sales representative selling a range of products and services                | group clients by a certain product                                                            | view clients who have the same product easily, and update them all if there are changes          |
 | `*`     | sales representative who needs to share their client information with others | export my current client list                                                                 | transfer my client list to a different platform or device                                        |
-| `*`     | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                | 
+| `*`     | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                |
 | `* *`   | competitive sales representative                                             | see potential clients that have approached my company but have yet to attach to any sales rep | reach out to more contacts and close more deals                                                  |
 | `*`     | busy sales representative                                                    | colour code my client list                                                                    | visually see what category my clients fall under without having to open each client's details    |
 | `* *`   | busy sales representative                                                    | flag specific client contact as tasks to be done and put in details of the task               | easily see all the tasks I need to do urgently                                                   |
