@@ -60,7 +60,7 @@ public class Person {
     public Address getAddress() {
         return address;
     }
-      
+
     public Status getStatus() {
         return status;
     }

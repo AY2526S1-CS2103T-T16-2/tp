@@ -12,31 +12,31 @@ Our goal is to give sales representatives a **seamless client tracking experienc
 ## Features (MVP)
 The current version of ClientHub includes the following core features:
 
-- **Add client**: Create new client entries with details such as name, phone number, and email.  
-- **Delete client**: Remove clients who are no longer relevant.  
-- **View all clients**: Display all saved client entries at a glance.  
+- **Add client**: Create new client entries with details such as name, phone number, and email.
+- **Delete client**: Remove clients who are no longer relevant.
+- **View all clients**: Display all saved client entries at a glance.
 
 ---
 
 ## Planned Features
 Beyond the MVP, ClientHub aims to support sales reps with additional productivity features such as:
-- Editing client details  
-- Filtering and sorting client lists  
-- Tracking client statuses and onboarding progress  
-- Importing contacts from Excel/CSV  
-- Exporting client lists to share with colleagues  
-- Adding notes, tags, or grouping clients by product or status  
+- Editing client details
+- Filtering and sorting client lists
+- Tracking client statuses and onboarding progress
+- Importing contacts from Excel/CSV
+- Exporting client lists to share with colleagues
+- Adding notes, tags, or grouping clients by product or status
 
 ---
 
 ## Developer Information
-- This project is written in **Java**, following **Object-Oriented Programming (OOP)** principles.  
+- This project is written in **Java**, following **Object-Oriented Programming (OOP)** principles.
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 ---
 
 ## Getting Started
-1. Ensure you have **Java 17** installed.  
+1. Ensure you have **Java 17** installed.
 2. Downlaod the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 3. Copy the file to the folder you want to use as the home folder.
 4. Open a command terminal and `cd` into the folder you put the `.jar` file in. Use `java -jar clienthub.jar` command to run the application.
