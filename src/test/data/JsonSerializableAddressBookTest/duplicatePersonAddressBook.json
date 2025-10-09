@@ -6,6 +6,7 @@
       "company": "Google",
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
+      "status" : "uncontacted",
       "tags": [
         "friends"
       ]
@@ -16,6 +17,7 @@
       "company": "Google",
       "email": "pauline@example.com",
       "address": "4th street"
+      "status" : "uncontacted",
     }
   ]
 }

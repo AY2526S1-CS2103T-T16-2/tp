@@ -7,6 +7,7 @@
       "Company": "Kopitiam",
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
+      "status" : "uncontacted",
       "tags": [
         "friends"
       ]
@@ -17,6 +18,7 @@
       "company": "Popular",
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
+      "status" : "uncontacted",
       "tags": [
         "owesMoney",
         "friends"
@@ -28,6 +30,7 @@
       "company": "Popular",
       "email": "heinz@example.com",
       "address": "wall street",
+      "status" : "uncontacted",
       "tags": []
     },
     {
@@ -36,6 +39,7 @@
       "company": "Shake Shack",
       "email": "cornelia@example.com",
       "address": "10th street",
+      "status" : "uncontacted",
       "tags": [
         "friends"
       ]
@@ -46,6 +50,7 @@
       "company": "Uniqlo",
       "email": "werner@example.com",
       "address": "michegan ave",
+      "status" : "uncontacted",
       "tags": []
     },
     {
@@ -54,6 +59,7 @@
       "company": "Popular",
       "email": "lydia@example.com",
       "address": "little tokyo",
+      "status" : "uncontacted",
       "tags": []
     },
     {
@@ -62,6 +68,7 @@
       "company": "ActiveSg",
       "email": "anna@example.com",
       "address": "4th street",
+      "status" : "uncontacted",
       "tags": []
     }
   ]
