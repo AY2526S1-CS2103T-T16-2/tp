@@ -10,8 +10,8 @@ import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 //import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 //import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.PersonUtil.getAddCommand;
+import static seedu.address.testutil.TypicalPersons.AMY;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
