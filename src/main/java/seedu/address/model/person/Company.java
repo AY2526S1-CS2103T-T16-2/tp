@@ -22,6 +22,10 @@ public class Company {
      */
     public final String companyName;
 
+    /**
+     * Constructor for Company.
+     * @param name
+     */
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompanyName(name), MESSAGE_CONSTRAINTS);
