@@ -44,8 +44,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String COMPANY_DESC_POPULAR = " " + PREFIX_COMPANY + VALID_COMPANY_POPULAR;
-    public static final String COMPANY_DESC_WATSONS = " " + PREFIX_COMPANY + VALID_COMPANY_WATSONS;
+    public static final String COMPANY_DESC_AMY = " " + PREFIX_COMPANY + VALID_COMPANY_POPULAR;
+    public static final String COMPANY_DESC_BOB = " " + PREFIX_COMPANY + VALID_COMPANY_WATSONS;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
