@@ -9,11 +9,22 @@ import seedu.address.model.record.ParticipationScore;
 import seedu.address.model.record.Record;
 import seedu.address.model.record.SubmissionScore;
 
+/**
+ * Jackson-friendly version of {@link Record}.
+ */
 public class JsonAdaptedRecord {
 
-    // Match your JSON shape: { "score": <int> }
+    /**
+     * A Jackson-friendly wrapper for a score value to match the JSON structure { "score": value }.
+     */
     public static final class ScoreWrapper {
         public final Integer score;
+
+        /**
+         * Constructs a {@code ScoreWrapper} with the given score.
+         *
+         * @param score The integer value of the score.
+         */
         @JsonCreator
         public ScoreWrapper(@JsonProperty("score") Integer score) {
             this.score = score;
@@ -24,6 +35,14 @@ public class JsonAdaptedRecord {
     private final ScoreWrapper submissionScore;     // may be null
     private final ScoreWrapper participationScore;  // may be null
 
+    /**
+     * Constructs a {@code JsonAdaptedRecord} with the given record details.
+     * This constructor is used by Jackson to deserialize the JSON object.
+     *
+     * @param attendanceScore The attendance score from the JSON file.
+     * @param submissionScore The submission score from the JSON file.
+     * @param participationScore The participation score from the JSON file.
+     */
     @JsonCreator
     public JsonAdaptedRecord(
             @JsonProperty("attendanceScore") ScoreWrapper attendanceScore,
@@ -34,6 +53,11 @@ public class JsonAdaptedRecord {
         this.participationScore = participationScore;
     }
 
+    /**
+     * Converts a given {@code Record} into this class for Jackson use.
+     *
+     * @param record The source {@code Record} object to convert.
+     */
     public JsonAdaptedRecord(Record record) {
         this.attendanceScore = new ScoreWrapper(record.getAttendanceScore().getScore());
         this.participationScore = new ScoreWrapper(record.getParticipationScore().getScore());
@@ -42,9 +66,6 @@ public class JsonAdaptedRecord {
     }
 
     public Record toModelType() throws IllegalValueException {
-        // If your app allows “missing” scores inside a record, decide defaults here.
-        // Below: treat null as score 0 for att/sub, and 0 for participation too.
-        // If you prefer true nulls, you’ll need nullable fields in Record (model change).
         AttendanceScore att = attendanceScore == null
                 ? new AttendanceScore(0)
                 : new AttendanceScore(attendanceScore.score);
