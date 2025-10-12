@@ -36,7 +36,13 @@ public class JsonAdaptedStudentTest {
     private static final String VALID_STUDENT_NUMBER = BENSON.getStudentNumber().toString();
     private static final List<JsonAdaptedRecord> VALID_RECORD_LIST = BENSON.getRecordList().records
             .stream()
-            .map(JsonAdaptedRecord::new)
+            .map(record -> {
+                if (record != null) {
+                    return new JsonAdaptedRecord(record);
+                } else {
+                    return null;
+                }
+            })
             .collect(Collectors.toList());
 
     @Test
