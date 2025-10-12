@@ -28,4 +28,16 @@ public class Record {
         return String.format("Attendance: %s, Submission: %s, Participation: %s",
                 attendanceScore, submissionScore, participationScore);
     }
+
+    public AttendanceScore getAttendanceScore() {
+        return this.attendanceScore;
+    }
+
+    public ParticipationScore getParticipationScore() {
+        return this.participationScore;
+    }
+
+    public SubmissionScore getSubmissionScore() {
+        return this.submissionScore;
+    }
 }

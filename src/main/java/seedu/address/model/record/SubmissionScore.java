@@ -32,4 +32,8 @@ public class SubmissionScore extends Score {
     public String toString() {
         return String.valueOf(this.score);
     }
+
+    public int getScore() {
+        return this.score;
+    }
 }
