@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.record.Record;
+import seedu.address.model.record.WeekNumber;
 import seedu.address.model.recordlist.RecordList;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
@@ -33,7 +34,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final String studentNumber;
-    private final List<Record> recordList = new ArrayList<>();
+    private final List<JsonAdaptedRecord> recordList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -43,7 +44,7 @@ class JsonAdaptedStudent {
                               @JsonProperty("email") String email, @JsonProperty("address") String address,
                               @JsonProperty("tags") List<JsonAdaptedTag> tags,
                               @JsonProperty("studentNumber") String studentNumber,
-                              @JsonProperty("recordList") List<Record> recordList) {
+                              @JsonProperty("recordList") List<JsonAdaptedRecord> recordList) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -69,7 +70,15 @@ class JsonAdaptedStudent {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         studentNumber = source.getStudentNumber().value;
-        recordList.addAll(source.getRecordList().records);
+        recordList.addAll(source.getRecordList().records.stream()
+                .map(record -> {
+                    if (record != null) {
+                        return new JsonAdaptedRecord(record);
+                    } else {
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -83,7 +92,7 @@ class JsonAdaptedStudent {
             studentTags.add(tag.toModelType());
         }
 
-        final List<Record> studentRecords = new ArrayList<>();
+        final List<JsonAdaptedRecord> studentRecords = new ArrayList<>();
         studentRecords.addAll(recordList);
 
         if (name == null) {
@@ -126,7 +135,13 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(StudentNumber.MESSAGE_CONSTRAINTS);
         }
         final StudentNumber modelStudentNumber = new StudentNumber(studentNumber);
-        final RecordList modelRecordList = new RecordList(studentRecords);
+        List<Record> raw = new ArrayList<>();
+        for (int i = 0; i < WeekNumber.MAX_WEEK_NUMBER  ; i++) {
+            JsonAdaptedRecord jr = (recordList != null && i < recordList.size()) ? recordList.get(i) : null;
+            raw.add(jr == null ? null : jr.toModelType()); // may be null — constructor will fix
+        }
+        RecordList modelRecordList = new RecordList(raw);
+
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
         return new Student(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStudentNumber,
