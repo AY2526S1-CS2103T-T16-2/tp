@@ -31,9 +31,9 @@ public class JsonAdaptedRecord {
         }
     }
 
-    private final ScoreWrapper attendanceScore;     // may be null
-    private final ScoreWrapper submissionScore;     // may be null
-    private final ScoreWrapper participationScore;  // may be null
+    private final ScoreWrapper attendanceScore;
+    private final ScoreWrapper submissionScore;
+    private final ScoreWrapper participationScore;
 
     /**
      * Constructs a {@code JsonAdaptedRecord} with the given record details.
@@ -65,7 +65,10 @@ public class JsonAdaptedRecord {
 
     }
 
-    public Record toModelType() throws IllegalValueException {
+    /**
+     * Converts this Jackson-friendly adapted record object into the model's {@code Record} object.
+     */
+    public Record toModelType() {
         AttendanceScore att = attendanceScore == null
                 ? new AttendanceScore(0)
                 : new AttendanceScore(attendanceScore.score);

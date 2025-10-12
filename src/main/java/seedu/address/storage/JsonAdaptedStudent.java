@@ -136,9 +136,9 @@ class JsonAdaptedStudent {
         }
         final StudentNumber modelStudentNumber = new StudentNumber(studentNumber);
         List<Record> raw = new ArrayList<>();
-        for (int i = 0; i < WeekNumber.MAX_WEEK_NUMBER  ; i++) {
+        for (int i = 0; i < WeekNumber.MAX_WEEK_NUMBER; i++) {
             JsonAdaptedRecord jr = (recordList != null && i < recordList.size()) ? recordList.get(i) : null;
-            raw.add(jr == null ? null : jr.toModelType()); // may be null — constructor will fix
+            raw.add(jr == null ? null : jr.toModelType());
         }
         RecordList modelRecordList = new RecordList(raw);
 
