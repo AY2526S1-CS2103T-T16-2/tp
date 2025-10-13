@@ -63,11 +63,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE
-                        + NAME_DESC_BOB
-                        + PHONE_DESC_BOB
-                        + COMPANY_DESC_BOB
-                        + EMAIL_DESC_BOB
+                PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + COMPANY_DESC_BOB + EMAIL_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
@@ -76,25 +72,15 @@ public class AddCommandParserTest {
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB
-                        + PHONE_DESC_BOB
-                        + COMPANY_DESC_BOB
-                        + EMAIL_DESC_BOB
-                        + ADDRESS_DESC_BOB
-                        + TAG_DESC_HUSBAND
-                        + TAG_DESC_FRIEND,
+                NAME_DESC_BOB + PHONE_DESC_BOB + COMPANY_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_repeatedNonTagValue_failure() {
-        String validExpectedPersonString = NAME_DESC_BOB
-                + PHONE_DESC_BOB
-                + COMPANY_DESC_BOB
-                + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB
-                + STATUS_DESC_BOB
-                + TAG_DESC_FRIEND;
+        String validExpectedPersonString = NAME_DESC_BOB + PHONE_DESC_BOB + COMPANY_DESC_BOB + EMAIL_DESC_BOB
+                + ADDRESS_DESC_BOB + STATUS_DESC_BOB + TAG_DESC_FRIEND;
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedPersonString,

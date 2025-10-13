@@ -29,6 +29,7 @@ public class ParserUtil {
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading
      * and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero
      *                        unsigned integer).
      */
@@ -79,8 +80,8 @@ public class ParserUtil {
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
         String trimmedCompany = company.trim();
-        if (!Phone.isValidPhone(trimmedCompany)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        if (!Company.isValidCompanyName(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
         return new Company(trimmedCompany);
     }
