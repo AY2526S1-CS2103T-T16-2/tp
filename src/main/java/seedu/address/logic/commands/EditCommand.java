@@ -106,11 +106,11 @@ public class EditCommand extends Command {
         Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Company updatedCompany = editPersonDescriptor.getCompany().orElse(personToEdit.getCompany());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedCompany, updatedEmail, updatedAddress, updatedStatus, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedCompany, updatedEmail, updatedAddress, updatedStatus,
+                updatedTags);
     }
 
     @Override
@@ -172,7 +172,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, company, email, address, tags);
         }
 
         public void setName(Name name) {
@@ -258,6 +258,7 @@ public class EditCommand extends Command {
                     && Objects.equals(company, otherEditPersonDescriptor.company)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(address, otherEditPersonDescriptor.address)
+                    && Objects.equals(status, otherEditPersonDescriptor.status)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -269,6 +270,7 @@ public class EditCommand extends Command {
                     .add("company", company)
                     .add("email", email)
                     .add("address", address)
+                    .add("status", status)
                     .add("tags", tags)
                     .toString();
         }
