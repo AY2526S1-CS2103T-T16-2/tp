@@ -15,7 +15,7 @@ ClientHub is a **Command Line Interface (CLI) contact management application** b
 
 ## Quick start
 
-1. Ensure you have **Java 17** installed.  
+1. Ensure you have **Java 17** installed.
 
 2. Downlaod the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 

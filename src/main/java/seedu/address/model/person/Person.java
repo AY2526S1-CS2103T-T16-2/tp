@@ -19,7 +19,6 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Company company;
     private final Email email;
 
     // Data fields
@@ -35,7 +34,6 @@ public class Person {
         requireAllNonNull(name, phone, company, email, address, status, tags);
         this.name = name;
         this.phone = phone;
-        this.company = company;
         this.email = email;
         this.address = address;
         this.company = company;
@@ -63,9 +61,6 @@ public class Person {
         return address;
     }
 
-    public Company getCompany() {
-        return company;
-      
     public Status getStatus() {
         return status;
     }
