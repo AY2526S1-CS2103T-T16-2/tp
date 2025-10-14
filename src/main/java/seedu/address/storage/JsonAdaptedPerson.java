@@ -101,7 +101,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Company.class.getSimpleName()));
         }
         if (!Company.isValidCompanyName(company)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Company.MESSAGE_CONSTRAINTS);
         }
         final Company modelCompany = new Company(company);
 

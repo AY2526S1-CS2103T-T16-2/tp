@@ -20,10 +20,10 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Company company;
 
     // Data fields
     private final Address address;
-    private final Company company;
     private final Status status;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -34,9 +34,9 @@ public class Person {
         requireAllNonNull(name, phone, company, email, address, status, tags);
         this.name = name;
         this.phone = phone;
+        this.company = company;
         this.email = email;
         this.address = address;
-        this.company = company;
         this.status = status;
         this.tags.addAll(tags);
     }
@@ -125,7 +125,6 @@ public class Person {
                 .add("company", company)
                 .add("email", email)
                 .add("address", address)
-                .add("company", company)
                 .add("status", status)
                 .add("tags", tags)
                 .toString();
