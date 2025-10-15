@@ -51,11 +51,11 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
+        name.setText(person.getName().value);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        companyName.setText("<COMPANY NAME>");
+        companyName.setText(person.getCompany().value);
         status.getChildren().add(new Label(person.getStatus().value));
     }
 }
