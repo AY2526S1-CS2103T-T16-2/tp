@@ -20,16 +20,16 @@ public class Company {
     /**
      * Name of Company.
      */
-    public final String companyName;
+    public final String value;
 
     /**
      * Constructor for Company.
-     * @param name
+     * @param name A valid company name
      */
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompanyName(name), MESSAGE_CONSTRAINTS);
-        this.companyName = name;
+        this.value = name;
     }
 
     /**
@@ -41,7 +41,7 @@ public class Company {
 
     @Override
     public String toString() {
-        return companyName;
+        return value;
     }
 
     @Override
@@ -56,11 +56,11 @@ public class Company {
         }
 
         Company otherName = (Company) other;
-        return companyName.equals(otherName.companyName);
+        return value.equals(otherName.value);
     }
 
     @Override
     public int hashCode() {
-        return companyName.hashCode();
+        return value.hashCode();
     }
 }
