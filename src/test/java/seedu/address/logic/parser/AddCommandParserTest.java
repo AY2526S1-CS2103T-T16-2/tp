@@ -47,6 +47,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -154,6 +155,10 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedPersonString + INVALID_EMAIL_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
+        // invalid company
+        assertParseFailure(parser, validExpectedPersonString + INVALID_COMPANY_DESC,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_COMPANY));
+
         // invalid phone
         assertParseFailure(parser, validExpectedPersonString + INVALID_PHONE_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
@@ -191,6 +196,11 @@ public class AddCommandParserTest {
                         + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
+        // missing company prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_COMPANY_BOB
+                        + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
+                expectedMessage);
+
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + COMPANY_DESC_BOB
                         + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
@@ -213,6 +223,11 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + COMPANY_DESC_BOB
                 + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+
+        // invalid company
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_COMPANY_DESC
+                + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Company.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + COMPANY_DESC_BOB
