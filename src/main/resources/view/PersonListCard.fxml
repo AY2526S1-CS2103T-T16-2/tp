@@ -38,7 +38,7 @@
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
         </HBox>
     </HBox>
-    <VBox alignment="CENTER" >
+    <VBox alignment="CENTER">
         <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
         <Label fx:id="companyName" styleClass="cell_small_label" text="\$companyName" />
     </VBox>
