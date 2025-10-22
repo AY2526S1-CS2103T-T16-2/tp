@@ -12,8 +12,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_PAPER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_STRAW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_STRAW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_PAPER;
 
 import java.util.ArrayList;
 import java.util.Arrays;
