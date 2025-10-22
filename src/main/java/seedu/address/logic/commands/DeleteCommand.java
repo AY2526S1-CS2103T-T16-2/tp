@@ -33,11 +33,21 @@ public class DeleteCommand extends Command {
     private final Index targetIndex;
     private final String targetStatus;
 
+    /**
+     * Creates a DeleteCommand to delete a person by index.
+     *
+     * @param targetIndex the index of the person in the list to delete
+     */
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
         this.targetStatus = null;
     }
 
+    /**
+     * Creates a DeleteCommand to delete all persons with the given status.
+     *
+     * @param targetStatus the status of persons to delete
+     */
     public DeleteCommand(String targetStatus) {
         this.targetIndex = null;
         this.targetStatus = targetStatus.toLowerCase();
