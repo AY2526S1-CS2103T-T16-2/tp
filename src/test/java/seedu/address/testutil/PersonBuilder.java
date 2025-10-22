@@ -10,7 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -31,7 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Status status;
-    private Set<Tag> tags;
+    private Set<Product> products;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,7 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         status = new Status(DEFAULT_STATUS);
-        tags = new HashSet<>();
+        products = new HashSet<>();
     }
 
     /**
@@ -56,7 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         status = personToCopy.getStatus();
-        tags = new HashSet<>(personToCopy.getTags());
+        products = new HashSet<>(personToCopy.getProducts());
     }
 
     /**
@@ -68,11 +68,11 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * Parses the {@code products} into a {@code Set<Product>} and set it to the
      * {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withProducts(String... products) {
+        this.products = SampleDataUtil.getProductSet(products);
         return this;
     }
 
@@ -117,6 +117,6 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, company, email, address, status, tags);
+        return new Person(name, phone, company, email, address, status, products);
     }
 }

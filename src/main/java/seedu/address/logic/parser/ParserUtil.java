@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -15,7 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser
@@ -132,29 +135,39 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
+     * Parses a {@code String product} into a {@code product}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code tag} is invalid.
+     * @throws ParseException if the given {@code product} is invalid.
      */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+    public static Product parseProduct(String product) throws ParseException {
+        requireNonNull(product);
+        String trimmedProduct = product.trim();
+        if (!Product.isValidProductName(trimmedProduct)) {
+            throw new ParseException(Product.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return new Product(trimmedProduct);
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> products} into a {@code Set<Product>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Product> parseProducts(Collection<String> products) throws ParseException {
+        requireNonNull(products);
+        final Set<Product> productSet = new HashSet<>();
+        for (String productName : products) {
+            productSet.add(parseProduct(productName));
         }
-        return tagSet;
+        return productSet;
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static List<String> parseKeywords(String keywords) {
+        return Arrays.stream(keywords.trim().split("\\s+"))
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
     }
 }
