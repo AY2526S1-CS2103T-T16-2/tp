@@ -34,7 +34,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
-            return new FindCommand(person -> true);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COMPANY,
