@@ -11,12 +11,11 @@
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
       spacing="20"
-      alignment="CENTER_LEFT">
+      alignment="CENTER">
     <padding>
         <Insets top="8" left="30" right="30" bottom="4" />
     </padding>
-    <HBox spacing="16">
-        <HBox spacing="0.5">
+        <HBox spacing="5" minWidth="240" maxWidth="240" alignment="CENTER_LEFT">
             <Label fx:id="id" styleClass="cell_big_label">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
@@ -31,14 +30,13 @@
                 <FlowPane fx:id="status" hgap="5" vgap="5" />
             </VBox>
         </HBox>
-        <HBox minWidth="120" maxWidth="120" alignment="CENTER">
+        <HBox minWidth="150" maxWidth="150" alignment="CENTER">
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
         </HBox>
-        <HBox minWidth="300" maxWidth="300" alignment="CENTER">
+        <HBox minWidth="360" maxWidth="360" alignment="CENTER">
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
         </HBox>
-    </HBox>
-    <VBox alignment="CENTER" minWidth="300" maxWidth="300">
+    <VBox alignment="CENTER" minWidth="320" maxWidth="320">
         <Label fx:id="address"
                styleClass="cell_small_label"
                text="\$address"
@@ -51,4 +49,7 @@
                textAlignment="CENTER"
         />
     </VBox>
+    <HBox alignment="CENTER">
+        <FlowPane fx:id="products" hgap="5" vgap="5" alignment="CENTER"/>
+    </HBox>
 </HBox>

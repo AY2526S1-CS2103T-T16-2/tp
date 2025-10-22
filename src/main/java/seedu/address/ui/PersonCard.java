@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -42,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     private Label companyName;
     @FXML
     private FlowPane status;
+    @FXML
+    private FlowPane products;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -57,5 +61,8 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         companyName.setText(person.getCompany().value);
         status.getChildren().add(new Label(person.getStatus().value));
+        person.getProducts().stream()
+                .sorted(Comparator.comparing(product -> product.productName))
+                .forEach(product -> products.getChildren().add(new Label(product.productName)));
     }
 }
