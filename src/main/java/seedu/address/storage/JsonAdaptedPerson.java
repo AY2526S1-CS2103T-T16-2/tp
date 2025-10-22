@@ -17,7 +17,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -32,7 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String status;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedProduct> products = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,15 +41,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("company") String company,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("status") String status, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("status") String status, @JsonProperty("products") List<JsonAdaptedProduct> products) {
         this.name = name;
         this.phone = phone;
         this.company = company;
         this.email = email;
         this.address = address;
         this.status = status;
-        if (tags != null) {
-            this.tags.addAll(tags);
+        if (products != null) {
+            this.products.addAll(products);
         }
     }
 
@@ -63,8 +63,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         status = source.getStatus().value;
-        tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+        products.addAll(source.getProducts().stream()
+                .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
     }
 
@@ -76,9 +76,9 @@ class JsonAdaptedPerson {
      *                               the adapted person.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            personTags.add(tag.toModelType());
+        final List<Product> personProducts = new ArrayList<>();
+        for (JsonAdaptedProduct product : products) {
+            personProducts.add(product.toModelType());
         }
 
         if (name == null) {
@@ -129,8 +129,8 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = new Status(status);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelCompany, modelEmail, modelAddress, modelStatus, modelTags);
+        final Set<Product> modelProducts = new HashSet<>(personProducts);
+        return new Person(modelName, modelPhone, modelCompany, modelEmail, modelAddress, modelStatus, modelProducts);
     }
 
 }

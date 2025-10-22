@@ -11,7 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setCompany(person.getCompany());
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
-        descriptor.setTags(person.getTags());
+        descriptor.setProducts(person.getProducts());
     }
 
     /**
@@ -88,13 +88,13 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the
+     * Parses the {@code products} into a {@code Set<Product>} and set it to the
      * {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withProducts(String... products) {
+        Set<Product> productSet = Stream.of(products).map(Product::new).collect(Collectors.toSet());
+        descriptor.setProducts(productSet);
         return this;
     }
 
