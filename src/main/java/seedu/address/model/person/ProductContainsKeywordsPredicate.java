@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.product.Product;
 
@@ -24,7 +23,8 @@ public class ProductContainsKeywordsPredicate implements Predicate<Person> {
         Set<Product> products = person.getProducts();
         return keywords.stream()
                 .anyMatch(keyword -> products.stream()
-                        .anyMatch(product -> StringUtil.containsWordIgnoreCase(product.toString(), keyword)));
+                        .anyMatch(product -> product.productName.toLowerCase()
+                                .contains(keyword.toLowerCase())));
     }
 
     @Override
