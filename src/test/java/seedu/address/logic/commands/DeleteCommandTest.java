@@ -134,7 +134,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validStatus_deleteAllMatching_success() throws Exception {
+    public void execute_validStatus_success() throws Exception {
         String statusToDelete = "uncontacted";
 
         List<Person> toDelete = model.getAddressBook().getPersonList().stream()
