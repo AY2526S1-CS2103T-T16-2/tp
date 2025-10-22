@@ -61,7 +61,7 @@ public class EditCommandTest {
                 .withStatus(VALID_STATUS_BOB).withProducts(VALID_PRODUCT_PAPER).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).withStatus(VALID_STATUS_BOB).build();
+                .withPhone(VALID_PHONE_BOB).withStatus(VALID_STATUS_BOB).build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
