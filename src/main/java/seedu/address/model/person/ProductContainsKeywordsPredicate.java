@@ -38,7 +38,9 @@ public class ProductContainsKeywordsPredicate implements Predicate<Person> {
             return false;
         }
 
-        ProductContainsKeywordsPredicate otherProductContainsKeywordsPredicate = (ProductContainsKeywordsPredicate) other;
+        ProductContainsKeywordsPredicate otherProductContainsKeywordsPredicate =
+            (ProductContainsKeywordsPredicate) other;
+
         return keywords.equals(otherProductContainsKeywordsPredicate.keywords);
     }
 

@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 /**
  * Composite predicate to test if a Person matches all the contained predicates.

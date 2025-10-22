@@ -161,6 +161,10 @@ public class ParserUtil {
         return productSet;
     }
 
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
     public static List<String> parseKeywords(String keywords) {
         return Arrays.stream(keywords.trim().split("\\s+"))
                 .filter(s -> !s.isEmpty())
