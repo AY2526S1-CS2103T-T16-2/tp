@@ -57,7 +57,7 @@ public class Product {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + productName + ']';
+        return productName;
     }
 
 }

@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -156,5 +159,11 @@ public class ParserUtil {
             productSet.add(parseProduct(productName));
         }
         return productSet;
+    }
+
+    public static List<String> parseKeywords(String keywords) {
+        return Arrays.stream(keywords.trim().split("\\s+"))
+                .filter(s -> !s.isEmpty())
+                .collect(Collectors.toList());
     }
 }
