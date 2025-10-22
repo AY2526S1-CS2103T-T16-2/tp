@@ -10,6 +10,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -80,7 +82,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void equals() {
+    public void equals_indexBasedDelete() {
         DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON);
         DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON);
 
@@ -102,11 +104,61 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void equals_statusBasedDelete() {
+        DeleteCommand deleteFirstCommand = new DeleteCommand("uncontacted");
+        DeleteCommand deleteSecondCommand = new DeleteCommand("unsuccessful");
+
+        // same object -> returns true
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+
+        // same values -> returns true
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand("uncontacted");
+        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+
+        // different types -> returns false
+        assertFalse(deleteFirstCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(deleteFirstCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+    }
+
+    @Test
     public void toStringMethod() {
         Index targetIndex = Index.fromOneBased(1);
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         String expected = DeleteCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
         assertEquals(expected, deleteCommand.toString());
+    }
+
+    @Test
+    public void execute_validStatus_deleteAllMatching_success() throws Exception {
+        String statusToDelete = "uncontacted";
+
+        List<Person> toDelete = model.getAddressBook().getPersonList().stream()
+                .filter(p -> p.getStatus().toString().equalsIgnoreCase(statusToDelete))
+                .toList();
+
+        DeleteCommand deleteCommand = new DeleteCommand(statusToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_BY_STATUS_SUCCESS, statusToDelete);
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        toDelete.forEach(expectedModel::deletePerson);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_statusNotFound_throwsCommandException() {
+        String statusToDelete = "invalid";
+
+        DeleteCommand deleteCommand = new DeleteCommand(statusToDelete);
+
+        assertCommandFailure(deleteCommand, model,
+                String.format(DeleteCommand.MESSAGE_NO_MATCHING_STATUS, statusToDelete));
     }
 
     /**
