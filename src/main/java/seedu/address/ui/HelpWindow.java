@@ -15,8 +15,41 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2526s1-cs2103t-t14-2.github.io/tp/UserGuide.html";
+    public static final String URL_MESSAGE = "Refer to the user guide for more in-depth guide: " + USERGUIDE_URL;
+
+    public static final String ADD_COMMAND_HELP = "add:\nAdds a person to the address book. "
+                + "\nParameters: n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
+                + "s/STATUS [t/TAG]\n"
+                + "Example: add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
+
+    public static final String DELETE_COMMAND_HELP = "delete:\nDeletes a person identified by the index number "
+                + "used in the displayed person list.\n"
+                + "Parameters: INDEX (must be a positive integer)\n"
+                + "Example: delete 1";
+
+    public static final String EDIT_COMMAND_HELP = "edit:\nEdits the details of the person identified by the index "
+                + "number used in the displayed person list. "
+                + " [At least one field to edit must be provided.]\n"
+                + "Parameters: INDEX (must be a positive integer) "
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]\n"
+                + "Example: edit 1 p/91234567";
+
+    public static final String FIND_COMMAND_HELP = "find:\nFinds all persons whose names contain any of "
+                + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+                + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+                + "Example: find alice bob charlie";
+
+    public static final String CLEAR_COMMAND_HELP = "clear:\nClears all persons from the address book.\n"
+                + "Example: clear";
+
+    public static final String HELP_MESSAGE = "Here are some useful commands:\n\n"
+                + ADD_COMMAND_HELP + "\n\n"
+                + DELETE_COMMAND_HELP + "\n\n"
+                + EDIT_COMMAND_HELP + "\n\n"
+                + FIND_COMMAND_HELP + "\n\n"
+                + CLEAR_COMMAND_HELP + "\n\n"
+                + URL_MESSAGE;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -99,4 +132,5 @@ public class HelpWindow extends UiPart<Stage> {
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
     }
+
 }
