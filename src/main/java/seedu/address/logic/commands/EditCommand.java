@@ -93,8 +93,6 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         assert(model.getFilteredPersonList()
                 .contains(editedPerson)) : "Edited version of person should be added.";
-        assert(!model.getFilteredPersonList()
-                .contains(personToEdit)) : "Version of person before edit should be removed.";
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
