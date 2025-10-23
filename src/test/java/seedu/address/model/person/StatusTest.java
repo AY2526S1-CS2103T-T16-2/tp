@@ -58,6 +58,8 @@ public class StatusTest {
 
         // different values -> returns false
         assertFalse(status.equals(new Status("inprogress")));
+
+        assert status != null : "Status object should not be null";
     }
 
 }
