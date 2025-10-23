@@ -64,7 +64,7 @@ public class DeleteCommand extends Command {
             }
 
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            assert(personToDelete != null) : "Index for delete is not checked properly.";
+            assert(personToDelete != null) : "Index for delete should not be null or out of range.";
             model.deletePerson(personToDelete);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
         }
