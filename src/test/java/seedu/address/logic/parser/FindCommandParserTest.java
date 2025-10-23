@@ -24,7 +24,8 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -69,5 +70,20 @@ public class FindCommandParserTest {
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " " + PREFIX_PRODUCT + " \n Fish \n \t Ball  \t", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // input without leading space
+        assertParseFailure(parser, PREFIX_NAME + "Alice Bob",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // empty input
+        assertParseFailure(parser, "   ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        // input with extra preamble before prefix
+        assertParseFailure(parser, "test" + PREFIX_NAME + "ALICE BOB",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 }
