@@ -12,7 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_COMPANY = new Prefix("c/");
     public static final Prefix PREFIX_EMAIL = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
-    public static final Prefix PREFIX_PRODUCT = new Prefix("prod/");
+    public static final Prefix PREFIX_PRODUCT = new Prefix("pdt/");
     public static final Prefix PREFIX_STATUS = new Prefix("s/");
 
 }
