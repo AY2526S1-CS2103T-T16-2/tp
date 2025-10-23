@@ -222,7 +222,6 @@ public class EditCommand extends Command {
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
-
         /**
          * Sets {@code products} to this object's {@code products}.
          * A defensive copy of {@code products} is used internally.
