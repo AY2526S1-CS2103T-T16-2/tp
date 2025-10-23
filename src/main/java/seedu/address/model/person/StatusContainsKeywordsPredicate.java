@@ -3,22 +3,24 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Status} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person> {
+public class StatusContainsKeywordsPredicate implements Predicate<Person> {
+
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public StatusContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream()
-                .anyMatch(keyword -> person.getName().value.toLowerCase().contains(keyword.toLowerCase()));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStatus().value, keyword));
     }
 
     @Override
@@ -26,14 +28,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         }
-
-        // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof StatusContainsKeywordsPredicate)) {
             return false;
         }
-
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        StatusContainsKeywordsPredicate otherStatusPredicate = (StatusContainsKeywordsPredicate) other;
+        return keywords.equals(otherStatusPredicate.keywords);
     }
 
     @Override

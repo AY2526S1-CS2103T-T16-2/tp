@@ -351,3 +351,12 @@
     -fx-background-radius: 14;
     -fx-font-size: 11;
 }
+
+#products .label {
+    -fx-font-size: 14;
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 2 4 2 4;
+    -fx-border-radius: 10;
+    -fx-background-radius: 14;
+}

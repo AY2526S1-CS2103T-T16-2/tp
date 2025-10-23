@@ -10,36 +10,46 @@
 <HBox id="cardPane" fx:id="cardPane"
       xmlns="http://javafx.com/javafx/17"
       xmlns:fx="http://javafx.com/fxml/1"
-      spacing="50"
-      alignment="CENTER_LEFT">
+      spacing="20"
+      alignment="CENTER">
     <padding>
         <Insets top="8" left="30" right="30" bottom="4" />
     </padding>
-    <HBox spacing="0.5">
-        <Label fx:id="id" styleClass="cell_big_label">
-            <minWidth>
-                <!-- Ensures that the label text is never truncated -->
-                <Region fx:constant="USE_PREF_SIZE" />
-            </minWidth>
-        </Label>
-        <VBox>
-            <padding>
-                <Insets bottom="10" />
-            </padding>
-            <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
-            <FlowPane fx:id="status" hgap="5" vgap="5" />
-        </VBox>
-    </HBox>
-    <HBox>
-        <HBox minWidth="100" maxWidth="100" alignment="CENTER_LEFT">
+        <HBox spacing="5" minWidth="240" maxWidth="240" alignment="CENTER_LEFT">
+            <Label fx:id="id" styleClass="cell_big_label">
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </Label>
+            <VBox>
+                <padding>
+                    <Insets bottom="10" />
+                </padding>
+                <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+                <FlowPane fx:id="status" hgap="5" vgap="5" />
+            </VBox>
+        </HBox>
+        <HBox minWidth="150" maxWidth="150" alignment="CENTER">
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
         </HBox>
-        <HBox minWidth="300" maxWidth="300" alignment="CENTER">
+        <HBox minWidth="360" maxWidth="360" alignment="CENTER">
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
         </HBox>
-    </HBox>
-    <VBox alignment="CENTER">
-        <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-        <Label fx:id="companyName" styleClass="cell_small_label" text="\$companyName" />
+    <VBox alignment="CENTER" minWidth="320" maxWidth="320">
+        <Label fx:id="address"
+               styleClass="cell_small_label"
+               text="\$address"
+               wrapText="true"
+               textAlignment="CENTER"
+        />
+        <Label fx:id="companyName"
+               styleClass="cell_small_label"
+               text="\$companyName"
+               textAlignment="CENTER"
+        />
     </VBox>
+    <HBox alignment="CENTER">
+        <FlowPane fx:id="products" hgap="5" vgap="5" alignment="CENTER"/>
+    </HBox>
 </HBox>

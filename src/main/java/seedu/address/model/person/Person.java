@@ -8,11 +8,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Represents a Person in ClientHub.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated,
+ * immutable.
  */
 public class Person {
 
@@ -25,20 +26,21 @@ public class Person {
     // Data fields
     private final Address address;
     private final Status status;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Product> products = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Company company, Email email, Address address, Status status, Set<Tag> tags) {
-        requireAllNonNull(name, phone, company, email, address, status, tags);
+    public Person(Name name, Phone phone, Company company, Email email, Address address, Status status,
+            Set<Product> products) {
+        requireAllNonNull(name, phone, company, email, address, status, products);
         this.name = name;
         this.phone = phone;
         this.company = company;
         this.email = email;
         this.address = address;
         this.status = status;
-        this.tags.addAll(tags);
+        this.products.addAll(products);
     }
 
     public Name getName() {
@@ -66,12 +68,12 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws
+     * Returns an immutable product set, which throws
      * {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Product> getProducts() {
+        return Collections.unmodifiableSet(products);
     }
 
     /**
@@ -109,13 +111,13 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && status.equals(otherPerson.status)
-                && tags.equals(otherPerson.tags);
+                && products.equals(otherPerson.products);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, company, email, address, status, tags);
+        return Objects.hash(name, phone, company, email, address, status, products);
     }
 
     @Override
@@ -127,7 +129,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("status", status)
-                .add("tags", tags)
+                .add("products", products)
                 .toString();
     }
 

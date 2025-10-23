@@ -13,38 +13,45 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Status;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.product.Product;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
 public class SampleDataUtil {
+
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Company("Kopitiam"),
-                    new Email("alexyeoh@example.com"),
-                    new Address("Blk 30 Geylang Street 29, #06-40"), new Status("uncontacted"),
-                    getTagSet("friends")),
+                new Email("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                new Status("uncontacted"),
+                getProductSet("Coffee")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Company("Popular"),
-                    new Email("berniceyu@example.com"),
-                    new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Status("successful"),
-                    getTagSet("colleagues", "friends")),
+                new Email("berniceyu@example.com"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
+                new Status("successful"),
+                getProductSet("Paper", "Pen")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Company("Kou Fu"),
-                    new Email("charlotte@example.com"),
-                    new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), new Status("unsuccessful"),
-                    getTagSet("neighbours")),
+                new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                new Status("unsuccessful"),
+                getProductSet("Straw")),
             new Person(new Name("David Li"), new Phone("91031282"), new Company("Shake Shack"),
-                    new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new Status("inprogress"),
-                    getTagSet("family")),
+                new Email("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                new Status("inprogress"),
+                getProductSet("Straw")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Company("Mc Donald"),
-                    new Email("irfan@example.com"),
-                    new Address("Blk 47 Tampines Street 20, #17-35"), new Status("inprogress"),
-                    getTagSet("classmates")),
+                new Email("irfan@example.com"),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                new Status("inprogress"),
+                getProductSet("Chilli")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Company("Apple"),
-                    new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"), new Status("uncontacted"),
-                    getTagSet("colleagues"))
+                new Email("royb@example.com"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                new Status("uncontacted"),
+                getProductSet("Steel"))
         };
     }
 
@@ -57,12 +64,12 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a product set containing the list of strings given.
      */
-    public static Set<Tag> getTagSet(String... strings) {
+    public static Set<Product> getProductSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
-                .collect(Collectors.toSet());
+            .map(Product::new)
+            .collect(Collectors.toSet());
     }
 
 }
