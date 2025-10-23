@@ -174,7 +174,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, company, email, address, products);
+            return CollectionUtil.isAnyNonNull(name, phone, company, email, address, status, products);
         }
 
         public void setName(Name name) {
@@ -224,7 +224,6 @@ public class EditCommand extends Command {
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
-
         /**
          * Sets {@code products} to this object's {@code products}.
          * A defensive copy of {@code products} is used internally.
