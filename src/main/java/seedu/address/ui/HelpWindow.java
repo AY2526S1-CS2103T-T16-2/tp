@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_COMMAND_HELP = "add:\nAdds a person to the address book. "
                 + "\nParameters: n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
-                + "s/STATUS [t/TAG]\n"
+                + "s/STATUS [t/TAG]...\n"
                 + "Example: add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
 
     public static final String DELETE_COMMAND_HELP = "delete:\nDeletes a person identified by the index number "
@@ -32,7 +32,7 @@ public class HelpWindow extends UiPart<Stage> {
                 + "number used in the displayed person list. "
                 + " [At least one field to edit must be provided.]\n"
                 + "Parameters: INDEX (must be a positive integer) "
-                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]\n"
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]...\n"
                 + "Example: edit 1 p/91234567";
 
     public static final String FIND_COMMAND_HELP = "find:\nFinds all persons whose names contain any of "
