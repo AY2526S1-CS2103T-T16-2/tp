@@ -4,11 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +29,12 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
+import seedu.address.model.person.ProductContainsKeywordsPredicate;
+import seedu.address.model.person.StatusContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -69,11 +79,54 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_findName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findStatus() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_STATUS
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new StatusContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findProducts() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_PRODUCT
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new ProductContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findCompany() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_COMPANY
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new CompanyContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findMultiple() throws Exception {
+        List<String> nameKeywords = Arrays.asList("foo", "bar", "baz");
+        List<String> companyKeywords = Arrays.asList("foo", "bar", "baz");
+        List<Predicate<Person>> predicates = new ArrayList<>();
+        predicates.add(new NameContainsKeywordsPredicate(nameKeywords));
+        predicates.add(new CompanyContainsKeywordsPredicate(companyKeywords));
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME
+                        + nameKeywords.stream().collect(Collectors.joining(" "))
+                        + " " + PREFIX_COMPANY
+                        + companyKeywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new PersonContainsKeywordsPredicate(predicates)), command);
     }
 
     @Test

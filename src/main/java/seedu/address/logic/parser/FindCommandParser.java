@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonContainsKeywordsPredicate;
 import seedu.address.model.person.ProductContainsKeywordsPredicate;
 import seedu.address.model.person.StatusContainsKeywordsPredicate;
 
@@ -67,8 +68,10 @@ public class FindCommandParser implements Parser<FindCommand> {
             predicates.add(new ProductContainsKeywordsPredicate(
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PRODUCT).get())));
         }
-
-        return new FindCommand(person -> predicates.stream()
-                .allMatch(predicate -> predicate.test(person)));
+        if (predicates.size() == 1) {
+            return new FindCommand(predicates.get(0));
+        } else {
+            return new FindCommand(new PersonContainsKeywordsPredicate(predicates));
+        }
     }
 }
