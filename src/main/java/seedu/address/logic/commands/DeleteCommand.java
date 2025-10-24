@@ -39,6 +39,7 @@ public class DeleteCommand extends Command {
      * @param targetIndex the index of the person in the list to delete
      */
     public DeleteCommand(Index targetIndex) {
+        assert(targetIndex != null) : "Index should not be null.";
         this.targetIndex = targetIndex;
         this.targetStatus = null;
     }
