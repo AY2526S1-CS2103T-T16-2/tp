@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -159,6 +160,12 @@ public class DeleteCommandTest {
 
         assertCommandFailure(deleteCommand, model,
                 String.format(DeleteCommand.MESSAGE_NO_MATCHING_STATUS, statusToDelete));
+    }
+
+    @Test
+    public void constructor_nullIndex_assertionError() {
+        // Assertions must be enabled for this test to work
+        assertThrows(AssertionError.class, () -> new DeleteCommand((Index) null));
     }
 
     /**
