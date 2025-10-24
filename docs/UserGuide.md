@@ -6,24 +6,55 @@
 
 # ClientHub User Guide
 
-ClientHub is a **Command Line Interface (CLI) contact management application** built specifically for sales representatives. Unlike spreadsheets or complicated CRMs, ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**, all with a CLI.
+## Introduction
+ClientHub is a **Command Line Interface (CLI)** based _contact management application_ built specifically for sales representatives.
+>ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
+This guide will walk you through the **installation of ClientHub**, and **how to use it**.
+> [!NOTE]
+> 
+> If you are ***new to ClientHub***
+> - Continue with the installation guide [below](#installation)
+> 
+> If you have ***already installed ClientHub***
+> - Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
+> - Read the [features](#features) section for more details on each command
+> - Browse the [FAQ](#faq) for quick answers
+
+## Installation
 
 1. Ensure you have **Java 17** installed.
+> [!NOTE]
+> 
+> Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
 
-2. Downlaod the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
+2. Download the latest `ClientHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 
 3. Copy the file to the folder you want to use as the home folder.
 
-4. Open a command terminal and `cd` into the folder you put the `.jar` file in. Use `java -jar clienthub.jar` command to run the application.
+4. Open a command terminal and `cd` into the folder from Step 3. 
+> [!TIP]
+> 
+> Unsure how to navigate in the terminal?
+> 
+> If the `ClientHub.jar` file is in the folder Desktop/ClientHub:
+> - Type `cd Desktop/ClientHub` into the terminal
+> - You are on the right track if you see the following:
+> `C:\Users\YOUR_NAME\Desktop\ClientHub`
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Use `java -jar clienthub.jar` command to run the application.
+    
+> A GUI similar to the one below should be seen
+> ![GUI](images/clienthubInterface.png)
+
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all clients.
@@ -35,8 +66,8 @@ ClientHub is a **Command Line Interface (CLI) contact management application** b
    * `clear` : Deletes all clients.
 
    * `exit` : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+   
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -194,10 +225,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [pdt/PRODUCT]…​` <br> e.g., `add n/James Ho p/82349123 c/Google e/jamesho@example.com a/123, Clementi Rd, 1234665 s/successful pdt/Paper`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX/STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g., `find n/James s/successful`
 **List**   | `list`
 **Help**   | `help`
