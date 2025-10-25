@@ -51,7 +51,7 @@ Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Email
+Company -[hidden]right-> Email
 Email -[hidden]right-> Address
 
 ModelManager --> "~* filtered" Person
