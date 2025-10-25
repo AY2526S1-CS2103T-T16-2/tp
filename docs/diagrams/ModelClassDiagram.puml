@@ -16,10 +16,10 @@ Class UniquePersonList
 Class Person
 Class Name
 Class Phone
-Class Status
-Class Address
 Class Email
+Class Address
 Class Company
+Class Status
 Class Product
 
 Class I #FFFFFF
@@ -51,8 +51,8 @@ Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
 
 ModelManager --> "~* filtered" Person
 @enduml
