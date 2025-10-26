@@ -176,7 +176,6 @@ Format 2: `delete STATUS`
 * The status refers to the onboarding progress of the person.
 * The status **must be either uncontacted, inprogress, unsuccessful or successful**
 
-
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in ClientHub.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
