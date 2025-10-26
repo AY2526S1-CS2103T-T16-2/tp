@@ -162,17 +162,26 @@ Examples:
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from ClientHub.
+Deletes the specified person or every person with the specified status from ClientHub.
 
-Format: `delete INDEX`
+Format 1: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+Format 2: `delete STATUS`
+
+* Deletes every person currently holding the specified `STATUS`.
+* The status refers to the onboarding progress of the person.
+* The status **must be either uncontacted, inprogress, unsuccessful or successful**
+
+
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in ClientHub.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/John` followed by `delete unsuccessful` deletes every person holding the "unsuccessful" status, 
+regardless of whether the person is in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -227,7 +236,7 @@ Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [pdt/PRODUCT]…​` <br> e.g., `add n/James Ho p/82349123 c/Google e/jamesho@example.com a/123, Clementi Rd, 1234665 s/successful pdt/Paper`
 **Clear**  | `clear`
-**Delete** | `delete INDEX/STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
+**Delete** | `delete INDEX` OR `delete STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g., `find n/James s/successful`
 **List**   | `list`
