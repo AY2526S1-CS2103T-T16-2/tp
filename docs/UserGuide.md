@@ -17,7 +17,7 @@ ClientHub is a **Command Line Interface (CLI)** based _contact management applic
 
 ## Getting Started
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
-> [!NOTE]
+> 📝 **Note:**
 > 
 > If you are ***new to ClientHub***
 > - Continue with the installation guide [below](#installation)
@@ -30,7 +30,7 @@ This guide will walk you through the **installation of ClientHub**, and **how to
 ## Installation
 
 1. Ensure you have **Java 17** installed.
-> [!NOTE]
+> 📝 **Note:**
 > 
 > Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
 
@@ -39,7 +39,7 @@ This guide will walk you through the **installation of ClientHub**, and **how to
 3. Copy the file to the folder you want to use as the home folder.
 
 4. Open a command terminal and `cd` into the folder from Step 3. 
-> [!TIP]
+> **Tip:**
 > 
 > Unsure how to navigate in the terminal?
 > 
@@ -108,7 +108,7 @@ Format: `help`
 
 Adds a person to ClientHub.
 
-Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​ [pdt/PRODUCTS]…​`
 
 <box type="tip" seamless>
 
@@ -118,6 +118,14 @@ Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]�
 Examples:
 * `add n/John Doe p/98765432 c/meta e/johnd@example.com a/John street, block 123, #01-01 s/uncontacted`
 * `add n/Betsy Crowe t/friend c/apple e/betsycrowe@example.com a/Newgate Prison p/1234567 s/uncontacted t/criminal`
+
+
+**Tip:** A person can have any number of products (including 0)
+</box>
+
+Examples:
+* `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken`
+* `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken pdt/Fish`
 
 ### Listing all persons : `list`
 
@@ -129,9 +137,9 @@ Format: `list`
 
 Edits an existing person in ClientHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [pdt/PRODUCTS]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer equal or lesser than the number of contacts you have in the list, N,** 1, 2, 3, …​, N.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -142,23 +150,21 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Locating persons by any attribute: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons through characteristics containing any of the given substring in the attribute.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find keyword/KEYWORD [MORE_KEYWORDS]`<br>
+*Keyword can be either `n/ c/ s/ pdt/`.
+
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Substring of the keyword will be matched e.g. `Han` will match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` returns `john` and `John Doe`
+* `find c/po` returns `Bernice Yu`<br>
+  ![result for 'find po'](images/findPoResult.png)
 
 ### Deleting a person : `delete`
 
@@ -168,7 +174,7 @@ Format 1: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than the number of contacts in the list** 1, 2, 3, …​, N
 
 Format 2: `delete STATUS`
 
@@ -237,6 +243,6 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX` OR `delete STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g., `find n/James s/successful`
+**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, `find n/ja`
 **List**   | `list`
 **Help**   | `help`
