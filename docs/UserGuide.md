@@ -243,6 +243,6 @@ Action     | Format, Examples
 **Clear**  | `clear`
 **Delete** | `delete INDEX` OR `delete STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, `find n/ja`
+**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, q`find n/ja`
 **List**   | `list`
 **Help**   | `help`
