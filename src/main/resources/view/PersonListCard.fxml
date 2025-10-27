@@ -15,7 +15,7 @@
     <padding>
         <Insets top="8" left="30" right="30" bottom="4" />
     </padding>
-        <HBox spacing="5" minWidth="240" maxWidth="240" alignment="CENTER_LEFT">
+        <HBox spacing="5" minWidth="240" maxWidth="240" alignment="TOP_LEFT">
             <Label fx:id="id" styleClass="cell_big_label">
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
