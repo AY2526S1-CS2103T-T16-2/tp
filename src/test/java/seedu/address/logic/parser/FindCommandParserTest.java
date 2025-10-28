@@ -89,7 +89,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_InvalidArgs_returnsFindStatusCommand() {
+    public void parse_invalidArgs_returnsFindStatusCommand() {
         assertParseFailure(parser, PREFIX_STATUS + "success",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
