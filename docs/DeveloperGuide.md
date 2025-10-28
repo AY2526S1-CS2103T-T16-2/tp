@@ -130,7 +130,8 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ClientHub`, which `Person` references. This allows `ClientHub` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative model is given below. It has a `Set<Product>` in `Person`. This allows `AddressBook` to only 
+require one `Product` object per unique product, instead of each `Person` needing their own `Product` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
