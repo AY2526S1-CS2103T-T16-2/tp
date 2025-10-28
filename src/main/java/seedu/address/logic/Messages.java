@@ -17,7 +17,12 @@ public class Messages {
     public static final String MESSAGE_INVALID_FIND_STATUS_KEYWORD = "Status can only be one of: uncontacted," +
             " inprogress, successful, unsuccessful";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_MANY_PERSONS_FOUND_OVERVIEW =
+            "%1$d persons found matching your description!";
+    public static final String MESSAGE_ONE_PERSON_FOUND_OVERVIEW =
+            "1 person found matching your description!";
+    public static final String MESSAGE_NO_PERSONS_FOUND_OVERVIEW =
+            "No person was found matching your description!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified "
             + "for the following single-valued field(s): ";
 

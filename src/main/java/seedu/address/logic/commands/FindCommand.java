@@ -16,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all persons in address book whose attributes contain any of
  * the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -49,8 +49,17 @@ public class FindCommand extends Command {
         assert(model != null) : "Model should not be null.";
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        if (model.getFilteredPersonList().isEmpty()) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_NO_PERSONS_FOUND_OVERVIEW));
+        } else if (model.getFilteredPersonList().size() == 1) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_ONE_PERSON_FOUND_OVERVIEW));
+        } else {
+            return new CommandResult(
+                String.format(
+                        Messages.MESSAGE_MANY_PERSONS_FOUND_OVERVIEW, model.getFilteredPersonList().size()));
+        }
     }
 
     @Override
