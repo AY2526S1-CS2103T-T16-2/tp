@@ -107,7 +107,8 @@ public class FindCommandParserTest {
 
         assertParseFailure(parser, PREFIX_STATUS + "pending done",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-      
+    }
+
     @Test
     public void parse_duplicateArgs_throwsParseException() {
         // duplicate name prefix
@@ -144,5 +145,6 @@ public class FindCommandParserTest {
                 + PREFIX_PRODUCT + "Chicken " + PREFIX_PRODUCT + "Beef",
                 Messages.getErrorMessageForDuplicatePrefixes(
                         PREFIX_NAME, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_PRODUCT));
+
     }
 }
