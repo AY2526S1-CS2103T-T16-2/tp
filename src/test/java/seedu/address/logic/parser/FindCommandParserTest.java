@@ -145,6 +145,5 @@ public class FindCommandParserTest {
                 + PREFIX_PRODUCT + "Chicken " + PREFIX_PRODUCT + "Beef",
                 Messages.getErrorMessageForDuplicatePrefixes(
                         PREFIX_NAME, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_PRODUCT));
-
     }
 }
