@@ -14,12 +14,20 @@ import org.junit.jupiter.api.Test;
 import seedu.address.testutil.PersonBuilder;
 
 public class PersonContainsKeywordsPredicateTest {
+    private final NameContainsKeywordsPredicate namePredicate =
+            new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+    private final StatusContainsKeywordsPredicate statusPredicate =
+            new StatusContainsKeywordsPredicate(Collections.singletonList("inprogress"));
+    private final CompanyContainsKeywordsPredicate companyPredicate =
+            new CompanyContainsKeywordsPredicate(Collections.singletonList("Google"));
+    private final ProductContainsKeywordsPredicate productPredicate =
+            new ProductContainsKeywordsPredicate(Arrays.asList("Apple", "Pear"));
     @Test
     public void equals() {
         NameContainsKeywordsPredicate namePredicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
         StatusContainsKeywordsPredicate statusPredicate =
-                new StatusContainsKeywordsPredicate(Collections.singletonList("inprogress"));
+                new StatusContainsKeywordsPredicate(Collections.singletonList("Inprogress"));
         List<Predicate<Person>> firstPredicateList = Collections.singletonList(namePredicate);
         List<Predicate<Person>> secondPredicateList = Arrays.asList(namePredicate, statusPredicate);
 
@@ -48,15 +56,6 @@ public class PersonContainsKeywordsPredicateTest {
 
     @Test
     public void test_personMatchesPredicates_returnsTrue() {
-        NameContainsKeywordsPredicate namePredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        StatusContainsKeywordsPredicate statusPredicate =
-                new StatusContainsKeywordsPredicate(Collections.singletonList("inprogress"));
-        CompanyContainsKeywordsPredicate companyPredicate =
-                new CompanyContainsKeywordsPredicate(Collections.singletonList("Google"));
-        ProductContainsKeywordsPredicate productPredicate =
-                new ProductContainsKeywordsPredicate(Arrays.asList("Apple", "Pear"));
-
         // Matching namePredicate
         PersonContainsKeywordsPredicate predicate = new PersonContainsKeywordsPredicate(
                 Collections.singletonList(namePredicate));
@@ -97,15 +96,6 @@ public class PersonContainsKeywordsPredicateTest {
 
     @Test
     public void test_personDoesNotMatchPredicate_returnsFalse() {
-        NameContainsKeywordsPredicate namePredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        StatusContainsKeywordsPredicate statusPredicate =
-                new StatusContainsKeywordsPredicate(Collections.singletonList("inprogress"));
-        CompanyContainsKeywordsPredicate companyPredicate =
-                new CompanyContainsKeywordsPredicate(Collections.singletonList("Google"));
-        ProductContainsKeywordsPredicate productPredicate =
-                new ProductContainsKeywordsPredicate(Arrays.asList("Apple", "Pear"));
-
         // Non-matching namePredicate
         PersonContainsKeywordsPredicate predicate =
                 new PersonContainsKeywordsPredicate(Collections.singletonList(namePredicate));
