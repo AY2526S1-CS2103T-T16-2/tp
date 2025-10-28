@@ -41,6 +41,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COMPANY,
                 PREFIX_STATUS, PREFIX_PRODUCT);
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_PRODUCT);
+
         boolean isAnyPrefixPresent = argMultimap.getValue(PREFIX_NAME).isPresent()
                 || argMultimap.getValue(PREFIX_COMPANY).isPresent()
                 || argMultimap.getValue(PREFIX_STATUS).isPresent()
