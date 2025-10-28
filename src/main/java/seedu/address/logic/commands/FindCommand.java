@@ -25,6 +25,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain any of "
             + "the specified keywords (case-insensitive) for name, company, "
             + "status, or products and displays them as a list.\n"
+            + "Status must be either, \"uncontacted\", \"inprogress\", \"successful\", \"unsuccessful\".\n"
             + "At least one of the following parameters below must be stated.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "

@@ -86,4 +86,26 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "test" + PREFIX_NAME + "ALICE BOB",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_InvalidArgs_returnsFindStatusCommand() {
+        assertParseFailure(parser, PREFIX_STATUS + "success",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "uncontact",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "progress",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "pending done",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
 }
+

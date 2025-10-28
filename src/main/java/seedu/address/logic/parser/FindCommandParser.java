@@ -1,12 +1,14 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_FIND_STATUS_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -61,6 +63,25 @@ public class FindCommandParser implements Parser<FindCommand> {
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_COMPANY).get())));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+
+            List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
+
+            // Allowed statuses as a simple list
+            List<String> allowedStatuses = Arrays.asList("uncontacted", "inprogress", "successful", "unsuccessful");
+
+            // Check that all keywords are valid
+            boolean allValid = true;
+            for (String keyword : statusKeywords) {
+                if (!allowedStatuses.contains(keyword.toLowerCase())) {
+                    allValid = false;
+                    break;
+                }
+            }
+
+            if (!allValid) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
             predicates.add(new StatusContainsKeywordsPredicate(
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get())));
         }
