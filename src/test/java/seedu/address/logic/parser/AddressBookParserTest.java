@@ -89,7 +89,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_findStatus() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("successful", "unsuccessful", "uncontacted", "inprogress");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_STATUS
                         + keywords.stream().collect(Collectors.joining(" ")));
