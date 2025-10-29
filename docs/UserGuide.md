@@ -112,14 +112,6 @@ Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]â
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
-</box>
-
-Examples:
-* `add n/John Doe p/98765432 c/meta e/johnd@example.com a/John street, block 123, #01-01 s/uncontacted`
-* `add n/Betsy Crowe t/friend c/apple e/betsycrowe@example.com a/Newgate Prison p/1234567 s/uncontacted t/criminal`
-
-
 **Tip:** A person can have any number of products (including 0)
 </box>
 
