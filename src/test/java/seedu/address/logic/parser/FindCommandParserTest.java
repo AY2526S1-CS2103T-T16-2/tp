@@ -115,7 +115,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void isValidKeyword_Test() {
+    public void isValidKeywordTest() {
         List<String> uncontactedKeyword = Arrays.asList("uncontacted");
         assertTrue(parser.isValidKeyword(uncontactedKeyword));
 
@@ -131,7 +131,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidStatus_throwsParseException() {
-        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc","");
+        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc", "");
 
         assertThrows(ParseException.class, () -> {
             parser.parse("find s/" + String.join(" ", invalidKeywords));
