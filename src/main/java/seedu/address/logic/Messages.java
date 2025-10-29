@@ -41,21 +41,18 @@ public class Messages {
      * Formats the {@code person} for display to the user.
      */
     public static String format(Person person) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Company: ")
-                .append(person.getCompany())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Status: ")
-                .append(person.getStatus())
-                .append("; Products: ");
-        person.getProducts().forEach(builder::append);
-        return builder.toString();
+        return new StringBuilder()
+                .append(person.getName())
+                .append("; Phone: ").append(person.getPhone())
+                .append("; Company: ").append(person.getCompany())
+                .append("; Email: ").append(person.getEmail())
+                .append("; Address: ").append(person.getAddress())
+                .append("; Status: ").append(person.getStatus())
+                .append("; Products: ")
+                .append(person.getProducts().stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")))
+                .toString();
     }
 
 }
