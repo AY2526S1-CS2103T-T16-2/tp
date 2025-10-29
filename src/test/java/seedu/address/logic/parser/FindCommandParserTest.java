@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,7 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.ProductContainsKeywordsPredicate;
