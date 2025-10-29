@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -184,5 +185,32 @@ public class FindCommandParserTest {
                 + PREFIX_PRODUCT + "Chicken " + PREFIX_PRODUCT + "Beef",
                 Messages.getErrorMessageForDuplicatePrefixes(
                         PREFIX_NAME, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_PRODUCT));
+    }
+
+    @Test
+    public void parse_emptyPrefixArgs_throwsParseException() {
+        // empty name field
+        assertParseFailure(parser, " " + PREFIX_NAME + "",
+                MESSAGE_EMPTY_FIELDS + "name");
+        assertParseFailure(parser, " " + PREFIX_NAME + " ",
+                MESSAGE_EMPTY_FIELDS + "name");
+
+        // empty company field
+        assertParseFailure(parser, " " + PREFIX_COMPANY + "",
+                MESSAGE_EMPTY_FIELDS + "company");
+        assertParseFailure(parser, " " + PREFIX_COMPANY + "  ",
+                MESSAGE_EMPTY_FIELDS + "company");
+
+        // empty status field
+        assertParseFailure(parser, " " + PREFIX_STATUS + "",
+                MESSAGE_EMPTY_FIELDS + "status");
+        assertParseFailure(parser, " " + PREFIX_STATUS + " ",
+                MESSAGE_EMPTY_FIELDS + "status");
+        
+        // empty product field
+        assertParseFailure(parser, " " + PREFIX_PRODUCT + "",
+                MESSAGE_EMPTY_FIELDS + "product");
+        assertParseFailure(parser, " " + PREFIX_PRODUCT + " ",
+                MESSAGE_EMPTY_FIELDS + "product");
     }
 }

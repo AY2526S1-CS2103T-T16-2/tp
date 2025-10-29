@@ -22,9 +22,10 @@ public class Messages {
     public static final String MESSAGE_ONE_PERSON_FOUND_OVERVIEW =
             "1 person found matching your description!";
     public static final String MESSAGE_NO_PERSONS_FOUND_OVERVIEW =
-            "No person was found matching your description!";
+            "No person was found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified "
             + "for the following single-valued field(s): ";
+    public static final String MESSAGE_EMPTY_FIELDS = "Following fields should not be empty: ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
