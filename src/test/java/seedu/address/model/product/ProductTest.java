@@ -25,9 +25,9 @@ public class ProductTest {
         assertThrows(NullPointerException.class, () -> Product.isValidProductName(null));
 
         // invalid
-        assertFalse(Product.isValidProductName(""));          // empty
-        assertFalse(Product.isValidProductName("Fish&Chips"));// invalid char
-        assertFalse(Product.isValidProductName("Fish & Chips"));// invalid char with space
+        assertFalse(Product.isValidProductName("")); // empty
+        assertFalse(Product.isValidProductName("Fish&Chips")); // invalid char
+        assertFalse(Product.isValidProductName("Fish & Chips")); // invalid char with space
 
 
         // valid
@@ -46,7 +46,7 @@ public class ProductTest {
     }
 
     @Test
-    public void isValidProductName_multipleConsecutiveSpaces_false_or_trueDependingOnRegex() {
+    public void isValidProductName_multipleConsecutiveSpaces() {
         // If your regex allows only single spaces between words, keep these false:
         assertTrue(Product.isValidProductName("Chicken  Rice"));
         assertTrue(Product.isValidProductName("Beef   Brisket 123"));
@@ -55,12 +55,12 @@ public class ProductTest {
 
     @Test
     public void isValidProductName_symbolsAreInvalid_false() {
-        assertFalse(Product.isValidProductName("Fish&Chips"));     // symbol
-        assertFalse(Product.isValidProductName("Fish-Chips"));     // dash
-        assertFalse(Product.isValidProductName("Fish/Chips"));     // slash
-        assertFalse(Product.isValidProductName("Fish_Chips"));     // underscore
-        assertFalse(Product.isValidProductName("Chicken."));       // dot
-        assertFalse(Product.isValidProductName("Rice,"));          // comma
+        assertFalse(Product.isValidProductName("Fish&Chips")); // symbol
+        assertFalse(Product.isValidProductName("Fish-Chips")); // dash
+        assertFalse(Product.isValidProductName("Fish/Chips")); // slash
+        assertFalse(Product.isValidProductName("Fish_Chips")); // slash
+        assertFalse(Product.isValidProductName("Chicken.")); // dot
+        assertFalse(Product.isValidProductName("Rice,")); // comma
     }
 
     @Test
@@ -86,7 +86,7 @@ public class ProductTest {
     }
 
     @Test
-    public void equals_sameName_true_differentName_false() {
+    public void equals_sameName() {
         Product a = new Product("Chicken Rice");
         Product b = new Product("Chicken Rice");
         Product c = new Product("Beef 123");
