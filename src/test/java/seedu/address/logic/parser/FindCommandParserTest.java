@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
@@ -115,7 +116,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void isValidKeywordTest() {
+    public void isValidKeyword_containsValidStatus_returnsTrue() {
         List<String> uncontactedKeyword = Arrays.asList("uncontacted");
         assertTrue(parser.isValidKeyword(uncontactedKeyword));
 
@@ -130,8 +131,16 @@ public class FindCommandParserTest {
     }
 
     @Test
+    public void isValidKeyword_containsInvalidStatus_returnsFalse() {
+        List<String> invalidKeywords = Arrays.asList("notcontacted", "notARealStatus");
+
+        boolean result = parser.isValidKeyword(invalidKeywords);
+        assertFalse(result);
+    }
+
+    @Test
     public void parse_invalidStatus_throwsParseException() {
-        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc", "");
+        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc");
 
         assertThrows(ParseException.class, () -> {
             parser.parse("find s/" + String.join(" ", invalidKeywords));
