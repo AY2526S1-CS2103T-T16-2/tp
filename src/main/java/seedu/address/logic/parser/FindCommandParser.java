@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELDS; 
+import static seedu.address.logic.Messages.MESSAGE_EMPTY_FIELDS;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -58,48 +58,48 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<Predicate<Person>> predicates = new ArrayList<>();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-        List<String> names = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_NAME).get());
-        if (names.isEmpty()) {
-            emptyFields.add("name");
-        } else {
-            predicates.add(new NameContainsKeywordsPredicate(names));
+            List<String> names = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_NAME).get());
+            if (names.isEmpty()) {
+                emptyFields.add("name");
+            } else {
+                predicates.add(new NameContainsKeywordsPredicate(names));
+            }
         }
-    }
-    if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-        List<String> companies = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_COMPANY).get());
-        if (companies.isEmpty()) {
-            emptyFields.add("company");
-        } else {
-            predicates.add(new CompanyContainsKeywordsPredicate(companies));
+        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
+            List<String> companies = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_COMPANY).get());
+            if (companies.isEmpty()) {
+                emptyFields.add("company");
+            } else {
+                predicates.add(new CompanyContainsKeywordsPredicate(companies));
+            }
         }
-    }
-    if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-        List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
 
-        boolean allValid = isValidKeyword(statusKeywords);
+            boolean allValid = isValidKeyword(statusKeywords);
 
-        if (!allValid) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            if (!allValid) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
+            if (statusKeywords.isEmpty()) {
+                emptyFields.add("status");
+            } else {
+                predicates.add(new StatusContainsKeywordsPredicate(statusKeywords));
+            }
+        }
+        if (argMultimap.getValue(PREFIX_PRODUCT).isPresent()) {
+            List<String> products = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PRODUCT).get());
+            if (products.isEmpty()) {
+                emptyFields.add("product");
+            } else {
+                predicates.add(new ProductContainsKeywordsPredicate(products));
+            }
         }
 
-        if (statusKeywords.isEmpty()) {
-            emptyFields.add("status");
-        } else {
-            predicates.add(new StatusContainsKeywordsPredicate(statusKeywords));
+        if (!emptyFields.isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_FIELDS + String.join(", ", emptyFields));
         }
-    }
-    if (argMultimap.getValue(PREFIX_PRODUCT).isPresent()) {
-        List<String> products = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PRODUCT).get());
-        if (products.isEmpty()) {
-            emptyFields.add("product");
-        } else {
-            predicates.add(new ProductContainsKeywordsPredicate(products));
-        }
-    }
-
-    if (!emptyFields.isEmpty()) {
-        throw new ParseException(MESSAGE_EMPTY_FIELDS + String.join(", ", emptyFields));
-    }
         if (predicates.size() == 1) {
             return new FindCommand(predicates.get(0));
         } else {

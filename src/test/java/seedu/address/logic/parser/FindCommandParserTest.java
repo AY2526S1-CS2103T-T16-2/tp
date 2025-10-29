@@ -206,7 +206,7 @@ public class FindCommandParserTest {
                 MESSAGE_EMPTY_FIELDS + "status");
         assertParseFailure(parser, " " + PREFIX_STATUS + " ",
                 MESSAGE_EMPTY_FIELDS + "status");
-        
+
         // empty product field
         assertParseFailure(parser, " " + PREFIX_PRODUCT + "",
                 MESSAGE_EMPTY_FIELDS + "product");
