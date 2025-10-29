@@ -117,6 +117,11 @@ Adds a person to ClientHub.
 
 Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​ [pdt/PRODUCTS]…​`
 
+<box type="info" seamless>
+
+ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
+</box>
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of products (including 0)
