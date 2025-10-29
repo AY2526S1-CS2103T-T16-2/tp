@@ -8,7 +8,7 @@
 
 ## Introduction
 ClientHub is a **Command Line Interface (CLI)** based _contact management application_ built specifically for sales representatives.
->ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
+> ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,36 +17,41 @@ ClientHub is a **Command Line Interface (CLI)** based _contact management applic
 
 ## Getting Started
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
-> [!NOTE]
->
-> If you are ***new to ClientHub***
-> - Continue with the installation guide [below](#installation)
->
-> If you have ***already installed ClientHub***
-> - Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
-> - Read the [features](#features) section for more details on each command
-> - Browse the [FAQ](#faq) for quick answers
+<box type="tip" seamless> 
+
+If you are ***new to ClientHub***
+- Continue with the installation guide [below](#installation)
+ 
+If you have ***already installed ClientHub***
+- Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
+- Read the [features](#features) section for more details on each command
+- Browse the [FAQ](#faq) for quick answers
+</box>
 
 ## Installation
 
 1. Ensure you have **Java 17** installed.
-> [!NOTE]
->
-> Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
+<box type="info" seamless>
+Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
+</box>
 
 2. Download the latest `ClientHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 
 3. Copy the file to the folder you want to use as the home folder.
 
 4. Open a command terminal and `cd` into the folder from Step 3.
-> [!TIP]
->
-> Unsure how to navigate in the terminal?
->
-> If the `ClientHub.jar` file is in the folder Desktop/ClientHub:
-> - Type `cd Desktop/ClientHub` into the terminal
-> - You are on the right track if you see the following:
-> `C:\Users\YOUR_NAME\Desktop\ClientHub`
+
+<box type="tip" seamless>
+
+**Tip** 
+
+Unsure how to navigate in the terminal?
+ 
+If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
+- Type `cd Desktop/ClientHub` into the terminal
+- You are on the right track if you see the following:
+`C:\Users\YOUR_NAME\Desktop\ClientHub`
+</box>
 
 5. Use `java -jar clienthub.jar` command to run the application.
 
