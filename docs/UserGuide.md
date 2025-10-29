@@ -122,6 +122,8 @@ Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]â
 ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
 </box>
 
+<br>
+
 <box type="tip" seamless>
 
 **Tip:** A person can have any number of products (including 0)
@@ -148,7 +150,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STAT
 * Existing values will be updated to the input values.
 * You can remove all of a specified personâ€™s products by typing `edit INDEX pdt/`.
 
-* <box type="warning" seamless>
+<box type="warning" seamless>
 
 **Caution:**
 Editing the product field of a client completely deletes all existing products
