@@ -11,7 +11,7 @@ public class Phone {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Phone numbers should only contain numbers, and it should be at least 3 digits long";
+            "Phone numbers should be valid Singapore phone numbers, without country code.";
     public static final String VALIDATION_REGEX = "^[3689]\\d{7}$";
     public final String value;
 
