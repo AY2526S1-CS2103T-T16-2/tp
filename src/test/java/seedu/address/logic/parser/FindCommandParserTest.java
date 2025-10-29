@@ -140,11 +140,14 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_invalidStatus_throwsParseException() {
-        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc");
+        assertParseFailure(parser, PREFIX_STATUS + "invalidStatus",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
 
-        assertThrows(ParseException.class, () -> {
-            parser.parse("find s/" + String.join(" ", invalidKeywords));
-        });
+        assertParseFailure(parser, PREFIX_STATUS + "abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "notsuccessful",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
