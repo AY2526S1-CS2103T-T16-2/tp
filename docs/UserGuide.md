@@ -150,11 +150,13 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STAT
 * Existing values will be updated to the input values.
 * You can remove all of a specified person’s products by typing `edit INDEX pdt/`.
 
+<br>
+
 <box type="warning" seamless>
 
 **Caution:**
-Editing the product field of a client completely deletes all existing products
-tagged to the client, replacing it with your requested edits i.e adding of products is not cumulative.
+Editing the product field of a client completely deletes all existing products tagged to the client, 
+replacing it with your requested edits i.e adding of products is **not cumulative**.
 </box>
 
 Examples:
