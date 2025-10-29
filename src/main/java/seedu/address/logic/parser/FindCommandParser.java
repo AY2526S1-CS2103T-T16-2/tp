@@ -87,6 +87,11 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+    /**
+     * Check if the list of statusKeywords are valid inputs.
+     * @param statusKeywords is the list of keyword from user.
+     * @return true if all the keywords are valid.
+     */
     public boolean isValidKeyword(List<String> statusKeywords) {
         List<String> allowedStatuses = Arrays.asList("uncontacted", "inprogress", "successful", "unsuccessful");
         boolean allValid = true;
