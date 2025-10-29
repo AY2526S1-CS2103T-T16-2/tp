@@ -6,9 +6,12 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -36,6 +39,16 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_PRODUCT_1 = "Socks";
     private static final String VALID_PRODUCT_2 = "Cheese";
+<<<<<<< Updated upstream
+=======
+    private static final String VALID_PRODUCT_3 = "Cake";
+    private static final String VALID_PRODUCT_4 = "Sweets";
+    private static final String VALID_PRODUCT_MULTIPLE_WORDS = "Blue Cheese";
+    private static final String VALID_NAME_EXTRA_WHITESPACE = "Rachel       Walker";
+    private static final String VALID_ADDRESS_EXTRA_WHITESPACE = "123     Main  Street    #0505";
+    private static final String VALID_COMPANY_EXTRA_WHITESPACE = "National   University    of      Singapore";
+    private static final String VALID_PRODUCT_EXTRA_WHITESPACE = "Blue    Cheese";
+>>>>>>> Stashed changes
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -215,10 +228,18 @@ public class ParserUtilTest {
 
     @Test
     public void parseProducts_collectionWithValidProducts_returnsProductSet() throws Exception {
-        Set<Product> actualProductSet = ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, VALID_PRODUCT_2));
-        Set<Product> expectedProductSet = new HashSet<Product>(
+        Set<Product> twoProductList = ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, VALID_PRODUCT_2));
+        Set<Product> expectedTwoProductList = new HashSet<>(
                 Arrays.asList(new Product(VALID_PRODUCT_1), new Product(VALID_PRODUCT_2)));
 
-        assertEquals(expectedProductSet, actualProductSet);
+        assertEquals(expectedTwoProductList, twoProductList);
+
+        Set<Product> fourProductList = ParserUtil.parseProducts(Arrays.asList(
+                VALID_PRODUCT_3, VALID_PRODUCT_1, VALID_PRODUCT_2, VALID_PRODUCT_4));
+        Set<Product> expectedFourProductList = new HashSet<>(
+                Arrays.asList(new Product(VALID_PRODUCT_3), new Product(VALID_PRODUCT_1),
+                        new Product(VALID_PRODUCT_2), new Product(VALID_PRODUCT_4)));
+
+        assertEquals(expectedFourProductList, fourProductList);
     }
 }
