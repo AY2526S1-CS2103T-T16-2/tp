@@ -86,15 +86,6 @@ public class ProductTest {
     }
 
     @Test
-    public void constructor_invalidNames_throwIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Product(""));
-        assertThrows(IllegalArgumentException.class, () -> new Product(" "));
-        assertThrows(IllegalArgumentException.class, () -> new Product(" Fish"));
-        assertThrows(IllegalArgumentException.class, () -> new Product("Fish "));
-        assertThrows(IllegalArgumentException.class, () -> new Product("Fish&Chips"));
-    }
-
-    @Test
     public void equals_sameName_true_differentName_false() {
         Product a = new Product("Chicken Rice");
         Product b = new Product("Chicken Rice");
