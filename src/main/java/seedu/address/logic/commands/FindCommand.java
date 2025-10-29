@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.function.Predicate;
 
@@ -12,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * Finds and lists all persons in address book whose attributes contain any of
  * the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
@@ -21,8 +25,18 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain any of "
             + "the specified keywords (case-insensitive) for name, company, "
             + "status, or products and displays them as a list.\n"
-            + "Parameters: [n/NAME] [c/COMPANY] [s/STATUS] [p/PRODUCT]...\n"
-            + "Example: " + COMMAND_WORD + " n/alice c/google s/contacted p/laptop";
+            + "Status must be either, \"uncontacted\", \"inprogress\", \"successful\", \"unsuccessful\".\n"
+            + "At least one of the following parameters below must be stated.\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_PRODUCT + "PRODUCT]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Alice "
+            + PREFIX_COMPANY + "Google "
+            + PREFIX_STATUS + "Contacted "
+            + PREFIX_PRODUCT + "Laptop ";
 
     private final Predicate<Person> predicate;
 
@@ -32,10 +46,20 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        assert(model != null) : "Model should not be null.";
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        if (model.getFilteredPersonList().isEmpty()) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_NO_PERSONS_FOUND_OVERVIEW));
+        } else if (model.getFilteredPersonList().size() == 1) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_ONE_PERSON_FOUND_OVERVIEW));
+        } else {
+            return new CommandResult(
+                String.format(
+                        Messages.MESSAGE_MANY_PERSONS_FOUND_OVERVIEW, model.getFilteredPersonList().size()));
+        }
     }
 
     @Override

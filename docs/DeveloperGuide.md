@@ -13,7 +13,7 @@
 
 ## **Acknowledgements**
 
-This project is based on the ClientHub-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,7 +84,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -116,7 +116,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -130,7 +130,8 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ClientHub`, which `Person` references. This allows `ClientHub` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative model is given below. It has a `Set<Product>` in `Person`. This allows `AddressBook` to only
+require one `Product` object per unique product, instead of each `Person` needing their own `Product` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -139,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/ClientHub-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
@@ -224,7 +225,7 @@ The `redo` command does the opposite — it calls `Model#redoClientHub()`, w
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitClientHub()`, `Model#undoClientHub()` or `Model#redoClientHub()`. Thus, the `ClientHubStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the client list, such as `list`, will usually not call `Model#commitClientHub()`, `Model#undoClientHub()` or `Model#redoClientHub()`. Thus, the `ClientHubStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
@@ -293,36 +294,37 @@ thereby improving their operational efficiency
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                                                      | I want to …​                                                                                  | So that I can…​                                                                                  |
-|---------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `* * *` | new user who has not memorised the commands yet                              | be able to see the list of commands available and usage instructions                          | remember how to use the interface, and make use of ClientHub effectively                         |
-| `* * `  | new user to ClientHub                                                        | see the client book populated with sample data                                                | see how the app is supposed to look like when I use it                                           |
-| `* * `  | new user who wants to start using ClientHub                                  | remove all the current data                                                                   | get rid of all sample/test data used for exploring the app, and start adding real data           |
-| `* * *` | user                                                                         | delete a client                                                                               | remove clients that I am no longer servicing                                                     |
-| `* * *` | user                                                                         | add clients                                                                                   | keep track of all potential clients                                                              |
-| `* * *` | user                                                                         | view all my clients at one glance                                                             | review my full client list and update it if necessary                                            |
-| `* * *` | user with many persons in the address book                                   | save my client contact details                                                                | contact my clients                                                                               |
-| `* *`   | user                                                                         | edit my clients' information                                                                  | update their personal particulars and relevant information to be used for contacting them        |
-| `*`     | forgetful sales representative with many clients                             | be able to see the contact details of my most frequently contacted clients                    | check up on their wellbeing and need for products/services, and build a strong rapport with them |
-| `* * *` | meticulous sales representative who wants to manage clients thoroughly       | add the onboarding progress of my clients                                                     | keep track of the best leads to follow up                                                        |
-| `* *`   | sales representative who is selling a range of products and services         | track my customers tagged with their respective deals                                         | remember which deal each client is interested in                                                 |
-| `* *`   | sales representative who is trying to get more sales quickly                 | list all my clients filtered by status                                                        | plan my daily cold calls more efficiently                                                        |
-| `* *`   | sales representative who struggles to remember names                         | find user with specific descriptions quickly                                                  | find someone in my contact even if I don't remember their name                                   |
-| `* *`   | sales representative who is constantly checking up on clients                | update the status of my clients                                                               | keep track of the clients that I have approached and clients that I have met                     |
-| `*`     | sales representative who needs to update others on their clients             | share my client details                                                                       | update my company or colleagues on my client's progress if necessary                             |
-| `* *`   | sales representative who likes to organise data properly                     | sort contact by name or tags or other information                                             | organise my client list easily and know who to approach specifically                             |
-| `* *`   | sales representative who offers tailored products and services to clients    | add quick notes to a client record                                                            | personalise my follow ups and build better relationship                                          |
-| `*`     | sales representative who is joining ClientHub from other applications        | import my existing Excel/CSV contact list                                                     | transition smoothly into ClientHub without having to retype everything                           |
-| `*`     | sales representative who has many clients over a long time                   | view summary report of clients                                                                | see progress of clients over time                                                                |
-| `* *`   | established sales representative with many clients                           | sort my client list by last contact or priority                                               | focus on the more urgent opportunities first                                                     |
-| `* *`   | sales representative with clients that can be easily stratified              | group related clients together                                                                | manage clients that are related to each other more easily                                        |
-| `* *`   | sales representative selling a range of products and services                | group clients by a certain product                                                            | view clients who have the same product easily, and update them all if there are changes          |
-| `*`     | sales representative who needs to share their client information with others | export my current client list                                                                 | transfer my client list to a different platform or device                                        |
-| `*`     | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                |
-| `* *`   | competitive sales representative                                             | see potential clients that have approached my company but have yet to attach to any sales rep | reach out to more contacts and close more deals                                                  |
-| `*`     | busy sales representative                                                    | colour code my client list                                                                    | visually see what category my clients fall under without having to open each client's details    |
-| `* *`   | busy sales representative                                                    | flag specific client contact as tasks to be done and put in details of the task               | easily see all the tasks I need to do urgently                                                   |
-| `* *`   | busy sales representative                                                    | see all the contacts with pending tasks to be done                                            | easily see all the tasks without looking through the list                                        |
+|----------|------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `* * *`  | user                                                                         | delete a client                                                                               | remove clients that I am no longer servicing                                                     |
+| `* * *`  | user                                                                         | add clients                                                                                   | keep track of all potential clients                                                              |
+| `* * *`  | user                                                                         | view all my clients at one glance                                                             | review my full client list and update it if necessary                                            |
+| `* * *`  | new user who has not memorised the commands yet                              | be able to see the list of commands available and usage instructions                          | remember how to use the interface, and make use of ClientHub effectively                         |
+| `* * *`  | user with many persons in the address book                                   | save my client contact details                                                                | contact my clients                                                                               |
+| `* * *`  | meticulous sales representative who wants to manage clients thoroughly       | add the onboarding progress of my clients                                                     | keep track of the best leads to follow up                                                        |
+| `* *`    | user                                                                         | edit my clients' information                                                                  | update their personal particulars and relevant information to be used for contacting them        |
+| `* * `   | new user to ClientHub                                                        | see the client book populated with sample data                                                | see how the app is supposed to look like when I use it                                           |
+| `* * `   | new user who wants to start using ClientHub                                  | remove all the current data                                                                   | get rid of all sample/test data used for exploring the app, and start adding real data           |
+| `* *`    | competitive sales representative                                             | see potential clients that have approached my company but have yet to attach to any sales rep | reach out to more contacts and close more deals                                                  |
+| `* *`    | sales representative who is selling a range of products and services         | track my customers tagged with their respective deals                                         | remember which deal each client is interested in                                                 |
+| `* *`    | sales representative who is trying to get more sales quickly                 | list all my clients filtered by status                                                        | plan my daily cold calls more efficiently                                                        |
+| `* *`    | sales representative who struggles to remember names                         | find user with specific descriptions quickly                                                  | find someone in my contact even if I don't remember their name                                   |
+| `* *`    | sales representative who is constantly checking up on clients                | update the status of my clients                                                               | keep track of the clients that I have approached and clients that I have met                     |
+| `* *`    | sales representative who likes to organise data properly                     | sort contact by name or tags or other information                                             | organise my client list easily and know who to approach specifically                             |
+| `* *`    | sales representative who offers tailored products and services to clients    | add quick notes to a client record                                                            | personalise my follow ups and build better relationship                                          |
+| `* *`    | established sales representative with many clients                           | sort my client list by last contact or priority                                               | focus on the more urgent opportunities first                                                     |
+| `* *`    | sales representative with clients that can be easily stratified              | group related clients together                                                                | manage clients that are related to each other more easily                                        |
+| `* *`    | sales representative selling a range of products and services                | group clients by a certain product                                                            | view clients who have the same product easily, and update them all if there are changes          |
+| `* *`    | busy sales representative                                                    | flag specific client contact as tasks to be done and put in details of the task               | easily see all the tasks I need to do urgently                                                   |
+| `* *`    | busy sales representative                                                    | see all the contacts with pending tasks to be done                                            | easily see all the tasks without looking through the list                                        |
+| `**`     | busy sales representative                                                    | colour code my client list                                                                    | visually see what category my clients fall under without having to open each client's details    |
+| `*`      | sales representative who is joining ClientHub from other applications        | import my existing Excel/CSV contact list                                                     | transition smoothly into ClientHub without having to retype everything                           |
+| `*`      | sales representative who needs to share their client information with others | export my current client list                                                                 | transfer my client list to a different platform or device                                        |
+| `*`      | sales representative who needs to update others on their clients             | share my client details                                                                       | update my company or colleagues on my client's progress if necessary                             |
+| `*`      | sales representative who has many clients over a long time                   | view summary report of clients                                                                | see progress of clients over time                                                                |
+| `*`      | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                |
+| `*`      | forgetful sales representative with many clients                             | be able to see the contact details of my most frequently contacted clients                    | check up on their wellbeing and need for products/services, and build a strong rapport with them |
 | `*`      | sales representative                                                         | be able to put links to documents or sheets into contact details                              | keep track of more information about each client                                                 |
+| `*`      | sales representative                                                         | delete multiple clients at one go if they fit a certain criteria                              | easily remove unsuccessful or uncontactable clients                                               |
 
 *{More to be added}*
 
@@ -405,9 +407,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. Client list should be persistent and not change unless edited with a command or through text editor by user.
 13. Other users should be not able to see each others' client lists, they should be private and visible only to the current user.
 
-### Glossary
+*{More to be added}*
 
-* **Outreach Statuses**: No Contact, Contacted, Onboarded
+### Glossary
+* **Outreach Statuses**: Inprogress, uncontacted, successful, unsuccessful
 
 --------------------------------------------------------------------------------------------------------------------
 

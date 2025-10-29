@@ -6,29 +6,67 @@
 
 # ClientHub User Guide
 
-ClientHub is a **Command Line Interface (CLI) contact management application** built specifically for sales representatives. Unlike spreadsheets or complicated CRMs, ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**, all with a CLI.
+## Introduction
+ClientHub is a **Command Line Interface (CLI)** based _contact management application_ built specifically for sales representatives.
+> ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
 
 <!-- * Table of Contents -->
 <page-nav-print />
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Getting Started
+This guide will walk you through the **installation of ClientHub**, and **how to use it**.
+<box type="tip" seamless> 
+
+**Tip:**
+
+If you are ***new to ClientHub***
+- Continue with the installation guide [below](#installation)
+ 
+If you have ***already installed ClientHub***
+- Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
+- Read the [features](#features) section for more details on each command
+- Browse the [FAQ](#faq) for quick answers
+</box>
+
+## Installation
 
 1. Ensure you have **Java 17** installed.
+<box type="tip" seamless>
+Please refer to this <a href="https://se-education.org/guides/tutorials/javaInstallation.html">guide</a> for Java installation.
+</box>
 
-2. Downlaod the latest `.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
+2. Download the latest `ClientHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 
 3. Copy the file to the folder you want to use as the home folder.
 
-4. Open a command terminal and `cd` into the folder you put the `.jar` file in. Use `java -jar clienthub.jar` command to run the application.
+4. Open a command terminal and `cd` into the folder from Step 3.
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+<box type="tip" seamless>
+
+**Tip:**
+
+Unsure how to navigate in the terminal?
+ 
+If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
+- Type `cd Desktop/ClientHub` into the terminal
+- You are on the right track if you see the following:
+`C:\Users\YOUR_NAME\Desktop\ClientHub`
+</box>
+
+5. Use `java -jar clienthub.jar` command to run the application.
+
+> A GUI similar to the one below should be seen
+> ![GUI](images/clienthubInterface.png)
+
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `list` : Lists all clients.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to ClientHub.
+   * `add n/John Doe p/98765432 c/apple e/johnd@example.com a/John street, block 123, #01-01 s/uncontacted` : Adds a contact named `John Doe` to ClientHub.
 
    * `delete 3` : Deletes the 3rd client shown in the current list.
 
@@ -36,7 +74,7 @@ ClientHub is a **Command Line Interface (CLI) contact management application** b
 
    * `exit` : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -68,7 +106,7 @@ ClientHub is a **Command Line Interface (CLI) contact management application** b
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessageV2.png)
 
 Format: `help`
 
@@ -77,16 +115,23 @@ Format: `help`
 
 Adds a person to ClientHub.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​ [pdt/PRODUCTS]…​`
+
+<box type="info" seamless>
+
+ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
+</box>
+
+<br>
 
 <box type="tip" seamless>
 
-**Tip:** A person can have any number of tags (including 0)
+**Tip:** A person can have any number of products (including 0)
 </box>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken`
+* `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken pdt/Fish`
 
 ### Listing all persons : `list`
 
@@ -98,50 +143,62 @@ Format: `list`
 
 Edits an existing person in ClientHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCTS]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer equal or lesser than the number of contacts you have in the list, N,** 1, 2, 3, …​, N.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* You can remove all of a specified person’s products by typing `edit INDEX pdt/`.
+
+<box type="warning" seamless>
+
+**Caution:**
+Editing the product field of a client completely deletes all existing products
+tagged to the client, replacing it with your requested edits i.e adding of products is not cumulative.
+</box>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower pdt/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing products.
+*  `edit 3 pdt/Chicken` Clears all current products tagged to the 3rd person, replacing it with `Chicken` only.
 
-### Locating persons by name: `find`
+### Locating persons by any attribute: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons through characteristics containing any of the given substring in the attribute.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find keyword/KEYWORD [MORE_KEYWORDS]`<br>
+*Keyword can be either `n/ c/ s/ pdt/`.
+
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Substring of the keyword will be matched e.g. `Han` will match `Hans`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find n/John` returns `john` and `John Doe`
+* `find c/po` returns `Bernice Yu`<br>
+  ![result for 'find po'](images/findPoResult.png)
 
 ### Deleting a person : `delete`
 
-Deletes the specified person from ClientHub.
+Deletes the specified person or every person with the specified status from ClientHub.
 
-Format: `delete INDEX`
+Format 1: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer less than the number of contacts in the list** 1, 2, 3, …​, N
+
+Format 2: `delete STATUS`
+
+* Deletes every person currently holding the specified `STATUS`.
+* The status refers to the onboarding progress of the person.
+* The status **must be either uncontacted, inprogress, unsuccessful or successful**
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in ClientHub.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find n/John` followed by `delete unsuccessful` deletes every person holding the "unsuccessful" status,
+regardless of whether the person is in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
@@ -194,10 +251,10 @@ _Details coming soon ..._
 
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-**Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add**    | `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [pdt/PRODUCT]…​` <br> e.g., `add n/James Ho p/82349123 c/Google e/jamesho@example.com a/123, Clementi Rd, 1234665 s/successful pdt/Paper`
 **Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete** | `delete INDEX` OR `delete STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
+**Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, q`find n/ja`
 **List**   | `list`
 **Help**   | `help`

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -35,11 +36,13 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = args.trim();
 
         if (trimmedArgs.isEmpty()) {
-            return new FindCommand(person -> true);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_COMPANY,
                 PREFIX_STATUS, PREFIX_PRODUCT);
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_COMPANY, PREFIX_STATUS, PREFIX_PRODUCT);
 
         boolean isAnyPrefixPresent = argMultimap.getValue(PREFIX_NAME).isPresent()
                 || argMultimap.getValue(PREFIX_COMPANY).isPresent()
@@ -61,6 +64,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_COMPANY).get())));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+
+            List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
+
+            boolean allValid = isValidKeyword(statusKeywords);
+
+            if (!allValid) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            }
+
             predicates.add(new StatusContainsKeywordsPredicate(
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get())));
         }
@@ -68,7 +80,28 @@ public class FindCommandParser implements Parser<FindCommand> {
             predicates.add(new ProductContainsKeywordsPredicate(
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PRODUCT).get())));
         }
+        if (predicates.size() == 1) {
+            return new FindCommand(predicates.get(0));
+        } else {
+            return new FindCommand(new PersonContainsKeywordsPredicate(predicates));
+        }
+    }
 
-        return new FindCommand(new PersonContainsKeywordsPredicate(predicates));
+    /**
+     * Check if the list of statusKeywords are valid inputs.
+     * @param statusKeywords is the list of keyword from user.
+     * @return true if all the keywords are valid.
+     */
+    public boolean isValidKeyword(List<String> statusKeywords) {
+        List<String> allowedStatuses = Arrays.asList("uncontacted", "inprogress", "successful", "unsuccessful");
+        boolean allValid = true;
+        for (String keyword : statusKeywords) {
+            if (!allowedStatuses.contains(keyword.toLowerCase())) {
+                allValid = false;
+                break;
+            }
+        }
+
+        return allValid;
     }
 }

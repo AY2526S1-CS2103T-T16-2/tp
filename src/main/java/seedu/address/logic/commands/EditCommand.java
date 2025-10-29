@@ -52,17 +52,34 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PRODUCT + "PRODUCTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_PRODUCT + "Beef "
+            + PREFIX_PRODUCT + "Potato";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_COMPANY + "COMPANY] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_STATUS + "STATUS] "
+            + "[" + PREFIX_PRODUCT + "PRODUCTS]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_PHONE + "91234567 "
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_PRODUCT + "Beef "
+            + PREFIX_PRODUCT + "Potato";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
@@ -91,6 +108,8 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        assert(model.getFilteredPersonList()
+                .contains(editedPerson)) : "Edited fields of person should be added.";
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
@@ -172,7 +191,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, company, email, address, products);
+            return CollectionUtil.isAnyNonNull(name, phone, company, email, address, status, products);
         }
 
         public void setName(Name name) {
@@ -222,7 +241,6 @@ public class EditCommand extends Command {
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
-
         /**
          * Sets {@code products} to this object's {@code products}.
          * A defensive copy of {@code products} is used internally.

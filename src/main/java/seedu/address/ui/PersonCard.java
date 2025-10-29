@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -42,6 +44,8 @@ public class PersonCard extends UiPart<Region> {
     private Label companyName;
     @FXML
     private FlowPane status;
+    @FXML
+    private FlowPane products;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to
@@ -56,6 +60,38 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         companyName.setText(person.getCompany().value);
-        status.getChildren().add(new Label(person.getStatus().value));
+        status.getChildren().add(handleStatusLabel(person));
+        person.getProducts().stream()
+                .sorted(Comparator.comparing(product -> product.productName))
+                .forEach(product -> products.getChildren().add(new Label(product.productName)));
+    }
+
+    /**
+     * Creates and returns a styled {@code Label} representing the given {@code Person}'s status.
+     * The style depends on the status value ("uncontacted", "inprogress", "unsucessful", "successful").
+     *
+     * @param person The person whose status should be displayed.
+     * @return A {@code Label} containing the {@code Person}'s status displayed in text, with appropriate styling.
+     */
+    public Label handleStatusLabel(Person person) {
+        Label statusLabel = new Label(person.getStatus().value);
+        String status = person.getStatus().value.toLowerCase();
+        switch (status) {
+        case "uncontacted":
+            statusLabel.getStyleClass().add("status-uncontacted");
+            break;
+        case "inprogress":
+            statusLabel.getStyleClass().add("status-inprogress");
+            break;
+        case "unsuccessful":
+            statusLabel.getStyleClass().add("status-unsuccessful");
+            break;
+        case "successful":
+            statusLabel.getStyleClass().add("status-successful");
+            break;
+        default:
+            break;
+        }
+        return statusLabel;
     }
 }
