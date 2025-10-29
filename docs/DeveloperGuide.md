@@ -130,7 +130,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative model is given below. It has a `Set<Product>` in `Person`. This allows `AddressBook` to only 
+**Note:** An alternative model is given below. It has a `Set<Product>` in `Person`. This allows `AddressBook` to only
 require one `Product` object per unique product, instead of each `Person` needing their own `Product` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
@@ -321,7 +321,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | sales representative who needs to share their client information with others | export my current client list                                                                 | transfer my client list to a different platform or device                                        |
 | `*`      | sales representative who needs to update others on their clients             | share my client details                                                                       | update my company or colleagues on my client's progress if necessary                             |
 | `*`      | sales representative who has many clients over a long time                   | view summary report of clients                                                                | see progress of clients over time                                                                |
-| `*`      | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                | 
+| `*`      | busy sales representative                                                    | schedule alerts to send messages to clients                                                   | send timely messages to update or contact clients                                                |
 | `*`      | forgetful sales representative with many clients                             | be able to see the contact details of my most frequently contacted clients                    | check up on their wellbeing and need for products/services, and build a strong rapport with them |
 | `*`      | sales representative                                                         | be able to put links to documents or sheets into contact details                              | keep track of more information about each client                                                 |
 | `*`      | sales representative                                                         | delete multiple clients at one go if they fit a certain criteria                              | easily remove unsuccessful or uncontactable clients                                               |

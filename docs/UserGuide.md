@@ -8,7 +8,7 @@
 
 ## Introduction
 ClientHub is a **Command Line Interface (CLI)** based _contact management application_ built specifically for sales representatives.
->ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
+> ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
 
 <!-- * Table of Contents -->
 <page-nav-print />
@@ -17,39 +17,44 @@ ClientHub is a **Command Line Interface (CLI)** based _contact management applic
 
 ## Getting Started
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
-> 📝 **Note:**
-> 
-> If you are ***new to ClientHub***
-> - Continue with the installation guide [below](#installation)
-> 
-> If you have ***already installed ClientHub***
-> - Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
-> - Read the [features](#features) section for more details on each command
-> - Browse the [FAQ](#faq) for quick answers
+<box type="tip" seamless> 
+
+If you are ***new to ClientHub***
+- Continue with the installation guide [below](#installation)
+ 
+If you have ***already installed ClientHub***
+- Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
+- Read the [features](#features) section for more details on each command
+- Browse the [FAQ](#faq) for quick answers
+</box>
 
 ## Installation
 
 1. Ensure you have **Java 17** installed.
-> 📝 **Note:**
-> 
-> Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
+<box type="info" seamless>
+Please refer to this [guide](https://se-education.org/guides/tutorials/javaInstallation.html) for Java installation.
+</box>
 
 2. Download the latest `ClientHub.jar` file from [here](https://github.com/AY2526S1-CS2103T-T14-2/tp/releases)
 
 3. Copy the file to the folder you want to use as the home folder.
 
-4. Open a command terminal and `cd` into the folder from Step 3. 
-> **Tip:**
-> 
-> Unsure how to navigate in the terminal?
-> 
-> If the `ClientHub.jar` file is in the folder Desktop/ClientHub:
-> - Type `cd Desktop/ClientHub` into the terminal
-> - You are on the right track if you see the following:
-> `C:\Users\YOUR_NAME\Desktop\ClientHub`
+4. Open a command terminal and `cd` into the folder from Step 3.
+
+<box type="tip" seamless>
+
+**Tip** 
+
+Unsure how to navigate in the terminal?
+ 
+If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
+- Type `cd Desktop/ClientHub` into the terminal
+- You are on the right track if you see the following:
+`C:\Users\YOUR_NAME\Desktop\ClientHub`
+</box>
 
 5. Use `java -jar clienthub.jar` command to run the application.
-    
+
 > A GUI similar to the one below should be seen
 > ![GUI](images/clienthubInterface.png)
 
@@ -66,7 +71,7 @@ This guide will walk you through the **installation of ClientHub**, and **how to
    * `clear` : Deletes all clients.
 
    * `exit` : Exits the app.
-   
+
 7. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -129,7 +134,7 @@ Format: `list`
 
 Edits an existing person in ClientHub.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [pdt/PRODUCTS]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCTS]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer equal or lesser than the number of contacts you have in the list, N,** 1, 2, 3, …​, N.
 * At least one of the optional fields must be provided.
@@ -137,10 +142,15 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [pdt/
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
     specifying any tags after it.
+> [!NOTE]
+> 
+> Editing the product variable of a client completely deletes all existing products
+> tagged to the client, replacing it with your requested edits.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit 3 pdt/Chicken` Clears all current products tag to the 3rd person, replacing it with `Chicken` only.
 
 ### Locating persons by any attribute: `find`
 
@@ -177,7 +187,7 @@ Format 2: `delete STATUS`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in ClientHub.
 * `find n/Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-* `find n/John` followed by `delete unsuccessful` deletes every person holding the "unsuccessful" status, 
+* `find n/John` followed by `delete unsuccessful` deletes every person holding the "unsuccessful" status,
 regardless of whether the person is in the results of the `find` command.
 
 ### Clearing all entries : `clear`
