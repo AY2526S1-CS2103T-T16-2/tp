@@ -6,12 +6,9 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -39,16 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_PRODUCT_1 = "Socks";
     private static final String VALID_PRODUCT_2 = "Cheese";
-<<<<<<< Updated upstream
-=======
     private static final String VALID_PRODUCT_3 = "Cake";
     private static final String VALID_PRODUCT_4 = "Sweets";
-    private static final String VALID_PRODUCT_MULTIPLE_WORDS = "Blue Cheese";
-    private static final String VALID_NAME_EXTRA_WHITESPACE = "Rachel       Walker";
-    private static final String VALID_ADDRESS_EXTRA_WHITESPACE = "123     Main  Street    #0505";
-    private static final String VALID_COMPANY_EXTRA_WHITESPACE = "National   University    of      Singapore";
-    private static final String VALID_PRODUCT_EXTRA_WHITESPACE = "Blue    Cheese";
->>>>>>> Stashed changes
 
     private static final String WHITESPACE = " \t\r\n";
 
