@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -7,13 +9,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.CompanyContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.ProductContainsKeywordsPredicate;
@@ -107,6 +112,30 @@ public class FindCommandParserTest {
 
         assertParseFailure(parser, PREFIX_STATUS + "pending done",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void isValidKeyword_Test() {
+        List<String> uncontactedKeyword = Arrays.asList("uncontacted");
+        assertTrue(parser.isValidKeyword(uncontactedKeyword));
+
+        List<String> inprogressKeyword = Arrays.asList("inprogress");
+        assertTrue(parser.isValidKeyword(inprogressKeyword));
+
+        List<String> successfulKeyword = Arrays.asList("successful");
+        assertTrue(parser.isValidKeyword(successfulKeyword));
+
+        List<String> unsuccessfulKeyword = Arrays.asList("unsuccessful");
+        assertTrue(parser.isValidKeyword(unsuccessfulKeyword));
+    }
+
+    @Test
+    public void parse_invalidStatus_throwsParseException() {
+        List<String> invalidKeywords = Arrays.asList("invalidStatus", "notSuccessful", "abc","");
+
+        assertThrows(ParseException.class, () -> {
+            parser.parse("find s/" + String.join(" ", invalidKeywords));
+        });
     }
 
     @Test

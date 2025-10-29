@@ -67,17 +67,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
             List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
 
-            // Allowed statuses as a simple list
-            List<String> allowedStatuses = Arrays.asList("uncontacted", "inprogress", "successful", "unsuccessful");
-
-            // Check that all keywords are valid
-            boolean allValid = true;
-            for (String keyword : statusKeywords) {
-                if (!allowedStatuses.contains(keyword.toLowerCase())) {
-                    allValid = false;
-                    break;
-                }
-            }
+            boolean allValid = isValidKeyword(statusKeywords);
 
             if (!allValid) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -95,5 +85,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else {
             return new FindCommand(new PersonContainsKeywordsPredicate(predicates));
         }
+    }
+
+    public boolean isValidKeyword(List<String> statusKeywords) {
+        List<String> allowedStatuses = Arrays.asList("uncontacted", "inprogress", "successful", "unsuccessful");
+        boolean allValid = true;
+        for (String keyword : statusKeywords) {
+            if (!allowedStatuses.contains(keyword.toLowerCase())) {
+                allValid = false;
+                break;
+            }
+        }
+
+        return allValid;
     }
 }
