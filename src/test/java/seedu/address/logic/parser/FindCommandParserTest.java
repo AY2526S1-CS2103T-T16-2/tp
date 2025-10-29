@@ -1,5 +1,8 @@
 package seedu.address.logic.parser;
 
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,6 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -85,6 +89,62 @@ public class FindCommandParserTest {
 
         // input with extra preamble before prefix
         assertParseFailure(parser, "test" + PREFIX_NAME + "ALICE BOB",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArgs_returnsFindStatusCommand() {
+        assertParseFailure(parser, PREFIX_STATUS + "success",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "uncontact",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "progress",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "pending done",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void isValidKeyword_containsValidStatus_returnsTrue() {
+        List<String> uncontactedKeyword = Arrays.asList("uncontacted");
+        assertTrue(parser.isValidKeyword(uncontactedKeyword));
+
+        List<String> inprogressKeyword = Arrays.asList("inprogress");
+        assertTrue(parser.isValidKeyword(inprogressKeyword));
+
+        List<String> successfulKeyword = Arrays.asList("successful");
+        assertTrue(parser.isValidKeyword(successfulKeyword));
+
+        List<String> unsuccessfulKeyword = Arrays.asList("unsuccessful");
+        assertTrue(parser.isValidKeyword(unsuccessfulKeyword));
+    }
+
+    @Test
+    public void isValidKeyword_containsInvalidStatus_returnsFalse() {
+        List<String> invalidKeywords = Arrays.asList("notcontacted", "notARealStatus");
+
+        boolean result = parser.isValidKeyword(invalidKeywords);
+        assertFalse(result);
+    }
+
+    @Test
+    public void parse_invalidStatus_throwsParseException() {
+        assertParseFailure(parser, PREFIX_STATUS + "invalidStatus",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, PREFIX_STATUS + "notsuccessful",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
