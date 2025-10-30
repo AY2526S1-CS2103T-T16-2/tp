@@ -235,7 +235,7 @@ _Details coming soon ..._
 **A**: Check if your command follows the exact format shown in the [Features](#features) section. ClientHub ignores extra spaces but requires all parameters to be correctly prefixed (e.g., n/, p/, e/, etc.).
 
 **Q**: Can I undo a command after I’ve deleted or edited a client?<br>
-**A**: Currently, ClientHub does not support an undo feature. Always confirm your actions before executing destructive commands like delete or clear.
+**A**: Yes you can. Refer to Edit and Delete commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
