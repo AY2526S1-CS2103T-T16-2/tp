@@ -23,6 +23,7 @@ public class Product {
     public Product(String productName) {
         requireNonNull(productName);
         checkArgument(isValidProductName(productName), MESSAGE_CONSTRAINTS);
+        assert productName.matches(VALIDATION_REGEX) : "productName should match the regex specified for Product";
         this.productName = productName;
     }
 

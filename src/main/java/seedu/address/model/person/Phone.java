@@ -23,6 +23,8 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
+        assert phone.startsWith("3") || phone.startsWith("6") || phone.startsWith("8") || phone.startsWith("9")
+                : "phone should start with '3', '6', '8', or '9'";
         value = phone;
     }
 
