@@ -23,7 +23,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        if (trimmedArgs.matches("\\d+")) { // check if it's an index
+        if (trimmedArgs.matches("\\d+")) {
             Index index = ParserUtil.parseIndex(trimmedArgs);
             return new DeleteCommand(index);
         }
