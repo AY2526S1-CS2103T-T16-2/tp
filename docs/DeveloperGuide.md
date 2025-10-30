@@ -410,6 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. ClientHub should not handle communication between clients and sales representatives.
 12. Client list should be persistent and not change unless edited with a command or through text editor by user.
 13. Other users should be not able to see each others' client lists, they should be private and visible only to the current user.
+14. The CLI should provide clear, actionable error messages for all invalid commands.
 
 *{More to be added}*
 
