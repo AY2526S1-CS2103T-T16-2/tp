@@ -14,9 +14,28 @@ built specifically for sales representatives based in Singapore.
 <!-- * Table of Contents -->
 <page-nav-print />
 
+## Table of Contents
+- [Quick Start](#quick-start)
+  - [Installation](#installation)
+- [Features](#features)
+    - [Viewing help](#viewing-help-help)
+    - [Adding a person](#adding-a-person-add)
+    - [Listing all persons](#listing-all-persons-list)
+    - [Editing a person](#editing-a-person-edit)
+    - [Locating persons by any attribute](#locating-persons-by-any-attribute-find)
+    - [Deleting a person](#deleting-a-person-delete)
+    - [Clearing all entries](#clearing-all-entries-clear)
+    - [Undo previous command](#undo-previous-command-undo)
+    - [Redo previous command undone](#redo-previous-command-undone-redo)
+    - [Exiting the program](#exiting-the-program-exit)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
 --------------------------------------------------------------------------------------------------------------------
 
-## Getting Started
+## Quick Start
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
 <box type="tip" seamless>
 
@@ -31,7 +50,7 @@ If you have ***already installed ClientHub***
 - Browse the [FAQ](#faq) for quick answers
 </box>
 
-## Installation
+### Installation
 
 1. Ensure you have **Java 17** installed.
 <box type="tip" seamless>
@@ -104,7 +123,7 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </box>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
 
@@ -134,13 +153,13 @@ Examples:
 * `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken`
 * `add n/John Doe p/98765432 c/Chargrill Bar e/johnd@example.com a/311, Clementi Ave 2, #02-25 s/uncontacted pdt/Chicken pdt/Fish`
 
-### Listing all persons : `list`
+### Listing all persons: `list`
 
 Shows a list of all persons in ClientHub.
 
 Format: `list`
 
-### Editing a person : `edit`
+### Editing a person: `edit`
 
 Edits an existing person in ClientHub.
 
@@ -184,7 +203,7 @@ Examples:
 **Tip:** `list` can be used after `find` to view the original list of clients again
 </box>
 
-### Deleting a person : `delete`
+### Deleting a person: `delete`
 
 Deletes the specified person or every person with the specified status from ClientHub.
 
@@ -206,7 +225,7 @@ Examples:
 * `find n/John` followed by `delete unsuccessful` deletes every person holding the "unsuccessful" status,
 regardless of whether the person is in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from ClientHub.
 
@@ -234,7 +253,7 @@ Redo the command you have just undone.
 If you have not undone any other command, this command will not do anything.
 </box>
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
