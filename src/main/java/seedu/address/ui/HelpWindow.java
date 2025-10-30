@@ -17,61 +17,58 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2526s1-cs2103t-t14-2.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more in-depth guide: " + USERGUIDE_URL;
+    public static final String THIRTEENSPACER = "             ";
+    public static final String FIVESPACER = "     ";
+    public static final String ADD_COMMAND_HELP = "ADD:\nUse: add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
+                + "s/STATUS [pdt/PRODUCT]...";
 
-    public static final String ADD_COMMAND_HELP = "add:\nAdds a person to the address book. "
-                + "\nParameters: n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
-                + "s/STATUS [pdt/PRODUCT]...\n"
-                + "Example:\n1. add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
+    public static final String DELETE_COMMAND_HELP = "DELETE:\n"
+                + "Use: delete INDEX (must be a positive integer) OR "
+                + "delete STATUS (uncontacted, inprogress, successful, unsuccessful)";
 
-    public static final String DELETE_COMMAND_HELP = "delete:\nDeletes a person identified by the index number "
-                + "used in the displayed person list.\n"
-                + "OR\n"
-                + "Deletes all the person associated with their STATUS\n"
-                + "Parameters: INDEX (must be a positive integer) OR "
-                + "STATUS (uncontacted, inprogress, successful, unsuccessful)\n"
-                + "Example:\n1. delete 1 -> delete the person at index 1"
-                + "\n2. delete uncontacted -> delete all contacts that are uncontacted";
+    public static final String EDIT_COMMAND_HELP = "EDIT:\n"
+                + "[At least one field to edit must be provided.]\n"
+                + "Use: edit INDEX (must be a positive integer) "
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...";
 
-    public static final String EDIT_COMMAND_HELP = "edit:\nEdits the details of the person identified by the index "
-                + "number used in the displayed person list. "
-                + "\n[At least one field to edit must be provided.]\n"
-                + "Parameters: INDEX (must be a positive integer) "
-                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...\n"
-                + "Note: Editing the product field erases all products, replacing it with your edited products.\n"
-                + "Example:\n1. edit 1 p/91234567 -> edit the phone number of the person at index 1 to be 91234567"
-                + "\n2. edit 1 pdt/chicken -> replaces all products tag to person 1 with just \"chicken\" as product";
+    public static final String FIND_COMMAND_HELP = "FIND:\n"
+                + "[At least one field to edit must be provided.]\n"
+                + "Use: find keyword/KEYWORD [MORE_KEYWORDS]...";
 
-    public static final String FIND_COMMAND_HELP = "find:\nFinds all persons according to the input substring of "
-                + "the specified attribute (case-insensitive)\nand displays them as a list with index numbers.\n"
-                + "Parameters: ATTRIBUTE/KEYWORD [MORE_KEYWORDS]...\n"
-                + "Example:\n1. find n/alice -> find person whose name has \"alice\" as substring"
-                + "\n2. find pdt/sta -> finds persons who is looking for products with \"sta\" in it.";
+    public static final String LIST_COMMAND_HELP_HEADER = "LIST:";
+    public static final String LIST_COMMAND_HELP_USAGE = "Use: list";
 
-    public static final String LIST_COMMAND_HELP = "list:\nShows a list of all persons in ClientHub.\n"
-                + "Example:\n1. list -> shows the list of everyone in ClientHub";
+    public static final String HELP_COMMAND_HELP_HEADER = "HELP:";
+    public static final String HELP_COMMAND_HELP_USAGE = "Use: help";
 
-    public static final String HELP_COMMAND_HELP = "help:\nShows this popup window which displays all the commands\n"
-                + "Example:\n1. help -> shows the help window ";
+    public static final String CLEAR_COMMAND_HELP_HEADER = "CLEAR:";
+    public static final String CLEAR_COMMAND_HELP_USAGE = "Use: clear";
 
-    public static final String CLEAR_COMMAND_HELP = "clear:\nClears all persons from the address book.\n"
-                + "Example:\n1. clear -> wipe out all person in ClientHub";
+    public static final String UNDO_COMMAND_HELP_HEADER = "UNDO:";
+    public static final String UNDO_COMMAND_HELP_USAGE = "Use: undo";
 
-    public static final String UNDO_COMMAND_HELP = "undo:\nUndo the previous command that has been undone.\n"
-                + "Example: Undo";
+    public static final String REDO_COMMAND_HELP_HEADER = "REDO:";
+    public static final String REDO_COMMAND_HELP_USAGE = "Use: redo";
 
-    public static final String REDO_COMMAND_HELP = "redo:\nRedo the previous command that has been executed.\n"
-                + "Example: Redo";
+    public static final String SINGLE_LINE_HEADERS = LIST_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
+            + HELP_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
+            + CLEAR_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
+            + UNDO_COMMAND_HELP_HEADER + THIRTEENSPACER + FIVESPACER
+            + REDO_COMMAND_HELP_HEADER;
 
-    public static final String HELP_MESSAGE = "Here are some useful commands:\n\n"
+    public static final String SINGLE_LINE_USE = LIST_COMMAND_HELP_USAGE + THIRTEENSPACER
+            + HELP_COMMAND_HELP_USAGE + "           "
+            + CLEAR_COMMAND_HELP_USAGE + THIRTEENSPACER + " "
+            + UNDO_COMMAND_HELP_USAGE + "            "
+            + REDO_COMMAND_HELP_USAGE;
+
+    public static final String HELP_MESSAGE = "Here are all the useful commands:\n\n"
                 + ADD_COMMAND_HELP + "\n\n"
                 + DELETE_COMMAND_HELP + "\n\n"
                 + EDIT_COMMAND_HELP + "\n\n"
                 + FIND_COMMAND_HELP + "\n\n"
-                + LIST_COMMAND_HELP + "\n\n"
-                + HELP_COMMAND_HELP + "\n\n"
-                + CLEAR_COMMAND_HELP + "\n\n"
-                + UNDO_COMMAND_HELP + "\n\n"
-                + REDO_COMMAND_HELP + "\n\n"
+                + SINGLE_LINE_HEADERS + "\n"
+                + SINGLE_LINE_USE + "\n\n"
                 + URL_MESSAGE;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
