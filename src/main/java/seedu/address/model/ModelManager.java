@@ -138,6 +138,7 @@ public class ModelManager implements Model {
         return !undoStack.isEmpty();
     }
 
+    //--- Redo functionality implementation ---
     @Override
     public boolean redo() {
         if (!canRedo()) {
