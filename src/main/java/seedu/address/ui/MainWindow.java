@@ -17,7 +17,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-import seedu.address.ui.UiPart;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,11 +30,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
-
-    // Choose between Light and Dark theme
-    ThemeManager themes = new ThemeManager();
-    Theme theme = SystemThemeDetector.detect();
-    themes.apply(primaryStage.getScene(), theme);
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -117,6 +111,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        // Choose between Light and Dark theme
+        ThemeManager themes = new ThemeManager();
+        Theme theme = SystemThemeDetector.detect();
+        themes.apply(primaryStage.getScene(), theme);
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 

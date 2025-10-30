@@ -14,24 +14,13 @@ public class ThemeManager {
      * If the same theme is already applied, nothing happens.
      */
     public void apply(Scene scene, Theme theme) {
-        if (scene == null || theme == null) {
-            return;
-        }
+        String cssPath = switch (theme) {
+            case DARK -> "/view/DarkTheme.css";
+            case LIGHT -> "/view/LightTheme.css";
+        };
 
-        // Prevent reapplying the same theme unnecessarily
-        if (currentTheme == theme) {
-            return;
-        }
-
-        // Clear existing stylesheets
         scene.getStylesheets().clear();
-
-        // Add the selected theme’s stylesheet
-        String cssPath = theme.getCssPath();
-        String cssUrl = getClass().getResource(cssPath).toExternalForm();
-        scene.getStylesheets().add(cssUrl);
-
-        currentTheme = theme;
+        scene.getStylesheets().add(getClass().getResource(cssPath).toExternalForm());
     }
 
     /**
