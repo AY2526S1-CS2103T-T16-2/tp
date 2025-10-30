@@ -20,10 +20,10 @@ public class Person {
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
-    private final Company company;
 
     // Data fields
+    private final Company company;
+    private final Email email;
     private final Address address;
     private final Status status;
     private final Set<Product> products = new HashSet<>();

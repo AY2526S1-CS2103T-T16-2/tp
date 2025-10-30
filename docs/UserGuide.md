@@ -118,17 +118,12 @@ Format: `help`
 Adds a person to ClientHub.
 
 Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS [s/STATUS] [pdt/PRODUCTS]…​`
-* If the optional `[s/STATUS]` field is not specified, it will be defaulted to `uncontacted`
-
-<box type="info" seamless>
 
 * ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
 * Name field will only accept alphabetic characters and spaces.
 * Phone number field is limited to 8 digits, starting with 3, 6, 8 or 9, as this application is Singapore based.
 * Status field must be either uncontacted, inprogress, unsuccessful or successful
-</box>
-
-<br>
+* If the optional `[s/STATUS]` field is not specified, it will be defaulted to `uncontacted`
 
 <box type="tip" seamless>
 
@@ -156,8 +151,6 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STAT
 * Existing values will be updated to the input values.
 * You can remove all of a specified person’s products by typing `edit INDEX pdt/`.
 
-<br>
-
 <box type="warning" seamless>
 
 **Caution:**
@@ -174,10 +167,10 @@ Examples:
 
 Finds persons through characteristics containing any of the given substring in the attribute.
 
-Format: `find keyword/KEYWORD [MORE_KEYWORDS]`<br>
-*Keyword can be either `n/ c/ s/ pdt/`.
+Format: `find keyword/KEYWORD [MORE_KEYWORDS]`
 
-
+* Keyword can be either `n/ c/ s/ pdt/`.
+* At least one of the optional fields must be provided.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Substring of the keyword will be matched e.g. `Han` will match `Hans`
 
@@ -186,7 +179,7 @@ Examples:
 * `find c/po` returns `Bernice Yu`<br>
   ![result for 'find po'](images/findPoResult.png)
 
-  <box type="tip" seamless>
+<box type="tip" seamless>
 
 **Tip:** `list` can be used after `find` to view the original list of clients again
 </box>
@@ -227,8 +220,7 @@ Undo the previous command that you have entered.
 
 <box type="info" seamless>
 
-* If you have no command to undo, the command will not do anything.
-
+If you have done nothing and have no command to undo, the command will not do anything.
 </box>
 
 ### Redo previous command undone: `redo`
@@ -239,8 +231,7 @@ Redo the command you have just undone.
 
 <box type="info" seamless>
 
-* If you have not undone any commands, the command will not do anything.
-
+If you have not undone any other command, this command will not do anything.
 </box>
 
 ### Exiting the program : `exit`
@@ -264,10 +255,6 @@ If your changes to the data file makes its format invalid, ClientHub will discar
 Furthermore, certain edits can cause ClientHub to behave in unexpected ways (e.g., if a value entered is outside the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </box>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -278,7 +265,7 @@ _Details coming soon ..._
 **Q**: I entered a command but nothing happened. What should I do?<br>
 **A**: Check if your command follows the exact format shown in the [Features](#features) section. ClientHub ignores extra spaces but requires all parameters to be correctly prefixed (e.g., n/, p/, e/, etc.).
 
-**Q**: Can I undo a command after I’ve deleted or edited a client?<br>
+**Q**: I accidentally deleted a Client, can I undo that mistake?<br>
 **A**: Yes you can. Refer to Undo command in the [Features](#features) section.
 
 --------------------------------------------------------------------------------------------------------------------
