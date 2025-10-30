@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -79,7 +80,9 @@ public class DeleteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_MATCHING_STATUS, targetStatus));
         }
 
-        toDelete.forEach(model::deletePerson);
+        AddressBook updated = new AddressBook(model.getAddressBook());
+        toDelete.forEach(updated::removePerson);
+        model.setAddressBook(updated);
 
         return new CommandResult(String.format(MESSAGE_DELETE_BY_STATUS_SUCCESS, targetStatus));
     }
