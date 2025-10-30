@@ -57,22 +57,24 @@ public class FindCommandParser implements Parser<FindCommand> {
         List<String> emptyFields = new ArrayList<>();
         List<Predicate<Person>> predicates = new ArrayList<>();
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            List<String> names = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_NAME).get());
+        argMultimap.getValue(PREFIX_NAME).ifPresent(value -> {
+            List<String> names = ParserUtil.parseKeywords(value);
             if (names.isEmpty()) {
                 emptyFields.add("name");
             } else {
                 predicates.add(new NameContainsKeywordsPredicate(names));
             }
-        }
-        if (argMultimap.getValue(PREFIX_COMPANY).isPresent()) {
-            List<String> companies = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_COMPANY).get());
+        });
+
+        argMultimap.getValue(PREFIX_COMPANY).ifPresent(value -> {
+            List<String> companies = ParserUtil.parseKeywords(value);
             if (companies.isEmpty()) {
                 emptyFields.add("company");
             } else {
                 predicates.add(new CompanyContainsKeywordsPredicate(companies));
             }
-        }
+        });
+
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
             List<String> statusKeywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).get());
 
@@ -88,14 +90,15 @@ public class FindCommandParser implements Parser<FindCommand> {
                 predicates.add(new StatusContainsKeywordsPredicate(statusKeywords));
             }
         }
-        if (argMultimap.getValue(PREFIX_PRODUCT).isPresent()) {
-            List<String> products = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PRODUCT).get());
+
+        argMultimap.getValue(PREFIX_PRODUCT).ifPresent(value -> {
+            List<String> products = ParserUtil.parseKeywords(value);
             if (products.isEmpty()) {
                 emptyFields.add("product");
             } else {
                 predicates.add(new ProductContainsKeywordsPredicate(products));
             }
-        }
+        });
 
         if (!emptyFields.isEmpty()) {
             throw new ParseException(MESSAGE_EMPTY_FIELDS + String.join(", ", emptyFields));

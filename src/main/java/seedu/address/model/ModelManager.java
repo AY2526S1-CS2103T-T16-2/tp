@@ -103,6 +103,7 @@ public class ModelManager implements Model {
         undoStack.push(new AddressBook(this.addressBook));
         redoStack.clear();
         addressBook.removePerson(target);
+        assert !hasPerson(target) : "target should have been removed from addressBook";
     }
 
     @Override
@@ -111,6 +112,7 @@ public class ModelManager implements Model {
         redoStack.clear();
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        assert hasPerson(person) : "Person should have been added to addressBook";
     }
 
     @Override
@@ -118,6 +120,8 @@ public class ModelManager implements Model {
         undoStack.push(new AddressBook(this.addressBook));
         redoStack.clear();
         requireAllNonNull(target, editedPerson);
+        assert hasPerson(target) : "Target must exist in addressBook";
+
         addressBook.setPerson(target, editedPerson);
     }
 

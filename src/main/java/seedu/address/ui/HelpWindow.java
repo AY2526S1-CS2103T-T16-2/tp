@@ -21,27 +21,40 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String ADD_COMMAND_HELP = "add:\nAdds a person to the address book. "
                 + "\nParameters: n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
                 + "s/STATUS [pdt/PRODUCT]...\n"
-                + "Example: add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
+                + "Example:\n1. add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
 
     public static final String DELETE_COMMAND_HELP = "delete:\nDeletes a person identified by the index number "
                 + "used in the displayed person list.\n"
-                + "Parameters: INDEX (must be a positive integer)\n"
-                + "Example: delete 1";
+                + "OR\n"
+                + "Deletes all the person associated with their STATUS\n"
+                + "Parameters: INDEX (must be a positive integer) OR "
+                + "STATUS (uncontacted, inprogress, successful, unsuccessful)\n"
+                + "Example:\n1. delete 1 -> delete the person at index 1"
+                + "\n2. delete uncontacted -> delete all contacts that are uncontacted";
 
     public static final String EDIT_COMMAND_HELP = "edit:\nEdits the details of the person identified by the index "
                 + "number used in the displayed person list. "
-                + " [At least one field to edit must be provided.]\n"
+                + "\n[At least one field to edit must be provided.]\n"
                 + "Parameters: INDEX (must be a positive integer) "
-                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...\n"
-                + "Example: edit 1 p/91234567";
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]...\n"
+                + "Note: Editing the product field erases all products, replacing it with your edited products.\n"
+                + "Example:\n1. edit 1 p/91234567 -> edit the phone number of the person at index 1 to be 91234567"
+                + "\n2. edit 1 pdt/chicken -> replaces all products tag to person 1 with just \"chicken\" as product";
 
-    public static final String FIND_COMMAND_HELP = "find:\nFinds all persons whose names contain any of "
-                + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-                + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-                + "Example: find alice bob charlie";
+    public static final String FIND_COMMAND_HELP = "find:\nFinds all persons according to the input substring of "
+                + "the specified attribute (case-insensitive)\nand displays them as a list with index numbers.\n"
+                + "Parameters: ATTRIBUTE/KEYWORD [MORE_KEYWORDS]...\n"
+                + "Example:\n1. find n/alice -> find person whose name has \"alice\" as substring"
+                + "\n2. find pdt/sta -> finds persons who is looking for products with \"sta\" in it.";
+
+    public static final String LIST_COMMAND_HELP = "list:\nShows a list of all persons in ClientHub.\n"
+                + "Example:\n1. list -> shows the list of everyone in ClientHub";
+
+    public static final String HELP_COMMAND_HELP = "help:\nShows this popup window which displays all the commands\n"
+                + "Example:\n1. help -> shows the help window ";
 
     public static final String CLEAR_COMMAND_HELP = "clear:\nClears all persons from the address book.\n"
-                + "Example: clear";
+                + "Example:\n1. clear -> wipe out all person in ClientHub";
 
     public static final String UNDO_COMMAND_HELP = "undo:\nUndo the previous command that has been undone.\n"
                 + "Example: Undo";
@@ -54,6 +67,8 @@ public class HelpWindow extends UiPart<Stage> {
                 + DELETE_COMMAND_HELP + "\n\n"
                 + EDIT_COMMAND_HELP + "\n\n"
                 + FIND_COMMAND_HELP + "\n\n"
+                + LIST_COMMAND_HELP + "\n\n"
+                + HELP_COMMAND_HELP + "\n\n"
                 + CLEAR_COMMAND_HELP + "\n\n"
                 + UNDO_COMMAND_HELP + "\n\n"
                 + REDO_COMMAND_HELP + "\n\n"
