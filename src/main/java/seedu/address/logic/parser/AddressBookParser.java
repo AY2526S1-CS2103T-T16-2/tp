@@ -80,6 +80,9 @@ public class AddressBookParser {
         case "undo":
             return new seedu.address.logic.commands.UndoCommand();
 
+        case "redo":
+            return new seedu.address.logic.commands.RedoCommand();
+
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

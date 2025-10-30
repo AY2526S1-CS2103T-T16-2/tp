@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final Stack<AddressBook> undoStack = new Stack<>();
+    private final Stack<AddressBook> redoStack = new Stack<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -81,7 +82,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        undoStack.push(new AddressBook(this.addressBook)); // Save state for undo
+        undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         this.addressBook.resetData(addressBook);
     }
 
@@ -99,12 +101,14 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
         undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
@@ -112,6 +116,7 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
     }
@@ -122,6 +127,7 @@ public class ModelManager implements Model {
         if (!canUndo()) {
             return false;
         }
+        redoStack.push(new AddressBook(this.addressBook));
         AddressBook previous = undoStack.pop();
         this.addressBook.resetData(previous);
         return true;
@@ -130,6 +136,22 @@ public class ModelManager implements Model {
     @Override
     public boolean canUndo() {
         return !undoStack.isEmpty();
+    }
+
+    @Override
+    public boolean redo() {
+        if (!canRedo()) {
+            return false;
+        }
+        undoStack.push(new AddressBook(this.addressBook));
+        AddressBook next = redoStack.pop();
+        this.addressBook.resetData(next);
+        return true;
+    }
+
+    @Override
+    public boolean canRedo() {
+        return !redoStack.isEmpty();
     }
 
     //=========== Filtered Person List Accessors =============================================================

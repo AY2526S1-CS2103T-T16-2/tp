@@ -95,4 +95,15 @@ public interface Model {
      * Returns true if undo is possible.
      */
     boolean canUndo();
+
+    /**
+     * Restores the next address book state if redo is available.
+     * @return true if redo was successful, false otherwise.
+     */
+    boolean redo();
+
+    /**
+     * Returns true if redo is possible.
+     */
+    boolean canRedo();
 }

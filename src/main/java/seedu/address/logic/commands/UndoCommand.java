@@ -10,7 +10,7 @@ import seedu.address.model.Model;
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS = "Undo successful. Previous state restored.";
+    public static final String MESSAGE_SUCCESS = "Undo successful.";
     public static final String MESSAGE_NOTHING_TO_UNDO = "Nothing to undo.";
 
     @Override
