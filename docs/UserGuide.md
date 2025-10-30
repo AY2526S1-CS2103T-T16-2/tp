@@ -17,13 +17,13 @@ ClientHub is a **Command Line Interface (CLI)** based _contact management applic
 
 ## Getting Started
 This guide will walk you through the **installation of ClientHub**, and **how to use it**.
-<box type="tip" seamless> 
+<box type="tip" seamless>
 
 **Tip:**
 
 If you are ***new to ClientHub***
 - Continue with the installation guide [below](#installation)
- 
+
 If you have ***already installed ClientHub***
 - Head to the [command summary](#command-summary) section for a quick overview of all commands and their usage
 - Read the [features](#features) section for more details on each command
@@ -48,7 +48,7 @@ Please refer to this <a href="https://se-education.org/guides/tutorials/javaInst
 **Tip:**
 
 Unsure how to navigate in the terminal?
- 
+
 If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 - Type `cd Desktop/ClientHub` into the terminal
 - You are on the right track if you see the following:
@@ -155,7 +155,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STAT
 <box type="warning" seamless>
 
 **Caution:**
-Editing the product field of a client completely deletes all existing products tagged to the client, 
+Editing the product field of a client completely deletes all existing products tagged to the client,
 replacing it with your requested edits i.e adding of products is **not cumulative**.
 </box>
 
