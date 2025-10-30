@@ -23,16 +23,17 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        try {
+        if (trimmedArgs.matches("\\d+")) {
             Index index = ParserUtil.parseIndex(trimmedArgs);
             return new DeleteCommand(index);
-        } catch (ParseException pe) {
-            if (trimmedArgs.matches("(?i)uncontacted|inprogress|unsuccessful|successful")) {
-                return new DeleteCommand(trimmedArgs);
-            }
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
+
+        if (trimmedArgs.matches("(?i)uncontacted|inprogress|unsuccessful|successful")) {
+            return new DeleteCommand(trimmedArgs);
+        }
+
+        throw new ParseException(String.format(
+                MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
 }
