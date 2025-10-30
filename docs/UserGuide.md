@@ -231,6 +231,12 @@ _Details coming soon ..._
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ClientHub home folder.
 
+**Q**: I entered a command but nothing happened. What should I do?<br>
+**A**: Check if your command follows the exact format shown in the [Features](#features) section. ClientHub ignores extra spaces but requires all parameters to be correctly prefixed (e.g., n/, p/, e/, etc.).
+
+**Q**: Can I undo a command after I’ve deleted or edited a client?<br>
+**A**: Currently, ClientHub does not support an undo feature. Always confirm your actions before executing destructive commands like delete or clear.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
