@@ -11,13 +11,25 @@ import java.nio.charset.StandardCharsets;
 public final class SystemThemeDetector {
     private SystemThemeDetector() {}
 
+    /**
+     * Detects if system is in light or dark mode.
+     * @return Theme of current system.
+     */
     public static Theme detect() {
         String os = System.getProperty("os.name", "").toLowerCase();
         try {
-            if (os.contains("mac"))   return detectMac();
-            if (os.contains("win"))   return detectWindows();
-            if (os.contains("linux")) return detectLinux();
-        } catch (Exception ignored) { /* fall through */ }
+            if (os.contains("mac")) {
+                return detectMac();
+            }
+            if (os.contains("win")) {
+                return detectWindows();
+            }
+            if (os.contains("linux")) {
+                return detectLinux();
+            }
+        } catch (Exception ignored) {
+            // fall through
+        }
         return Theme.LIGHT;
     }
 
@@ -51,11 +63,15 @@ public final class SystemThemeDetector {
                 .redirectErrorStream(true).start();
         String out = new String(p.getInputStream().readAllBytes(), StandardCharsets.UTF_8).toLowerCase();
         p.waitFor();
-        if (out.contains("prefer-dark")) return Theme.DARK;
+        if (out.contains("prefer-dark")) {
+            return Theme.DARK;
+        }
 
         // Fallback hint: GTK theme name
         String gtk = System.getenv("GTK_THEME");
-        if (gtk != null && gtk.toLowerCase().contains("dark")) return Theme.DARK;
+        if (gtk != null && gtk.toLowerCase().contains("dark")) {
+            return Theme.DARK;
+        }
 
         return Theme.LIGHT;
     }

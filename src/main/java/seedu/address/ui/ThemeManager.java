@@ -15,8 +15,8 @@ public class ThemeManager {
      */
     public void apply(Scene scene, Theme theme) {
         String cssPath = switch (theme) {
-            case DARK -> "/view/DarkTheme.css";
-            case LIGHT -> "/view/LightTheme.css";
+        case DARK -> "/view/DarkTheme.css";
+        case LIGHT -> "/view/LightTheme.css";
         };
 
         scene.getStylesheets().clear();
