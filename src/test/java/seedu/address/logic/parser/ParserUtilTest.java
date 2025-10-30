@@ -221,7 +221,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseProduct_invalidValue_throwsParseException() 
+    public void parseProduct_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseProduct(INVALID_PRODUCT));
     }
 
