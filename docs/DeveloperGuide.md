@@ -407,8 +407,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. Client list should be persistent and not change unless edited with a command or through text editor by user.
 13. Other users should be not able to see each others' client lists, they should be private and visible only to the current user.
 14. The CLI should provide clear, actionable error messages for all invalid commands.
-15. Color and contrast ratios should meet WCAG 2.1 accessibility standards for readability.
-16. A help command (help) should always be accessible to guide new users.
 
 *{More to be added}*
 
