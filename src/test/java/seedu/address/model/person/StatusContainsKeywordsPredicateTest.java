@@ -86,7 +86,7 @@ public class StatusContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new StatusContainsKeywordsPredicate(Arrays.asList(
                 "Alice", "12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("82345678")
                 .withEmail("alice@email.com").withAddress("Main Street").withStatus("Unsuccessful").build()));
     }
 

@@ -74,7 +74,7 @@ public class ProductContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new ProductContainsKeywordsPredicate(
                 Arrays.asList("Alice", "12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("82345678")
                 .withEmail("alice@email.com").withAddress("Main Street").withProducts("Chicken").build()));
     }
 
