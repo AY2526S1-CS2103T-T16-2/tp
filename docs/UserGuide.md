@@ -219,6 +219,30 @@ Clears all entries from ClientHub.
 
 Format: `clear`
 
+### Undo previous command: `undo`
+
+Format: `undo`
+
+Undo the previous command that you have entered.
+
+<box type="info" seamless>
+
+* If you have no command to undo, the command will not do anything.
+
+<br>
+
+### Redo previous command undone: `redo`
+
+Format: `redo`
+
+Redo the command you have just undone.
+
+<box type="info" seamless>
+
+* If you have not undone any commands, the command will not do anything.
+
+<br>
+
 ### Exiting the program : `exit`
 
 Exits the program.
