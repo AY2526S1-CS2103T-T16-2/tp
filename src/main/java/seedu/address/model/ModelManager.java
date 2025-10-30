@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.Stack;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Stack<AddressBook> undoStack = new Stack<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -79,6 +81,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        undoStack.push(new AddressBook(this.addressBook)); // Save state for undo
         this.addressBook.resetData(addressBook);
     }
 
@@ -95,20 +98,38 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        undoStack.push(new AddressBook(this.addressBook));
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        undoStack.push(new AddressBook(this.addressBook));
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
+        undoStack.push(new AddressBook(this.addressBook));
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //--- Undo functionality implementation ---
+    @Override
+    public boolean undo() {
+        if (!canUndo()) {
+            return false;
+        }
+        AddressBook previous = undoStack.pop();
+        this.addressBook.resetData(previous);
+        return true;
+    }
+
+    @Override
+    public boolean canUndo() {
+        return !undoStack.isEmpty();
     }
 
     //=========== Filtered Person List Accessors =============================================================
