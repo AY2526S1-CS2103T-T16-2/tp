@@ -124,7 +124,7 @@ Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS [s/STATUS] [pdt/P
 
 * ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
 * Name field will only accept alphabetic characters and spaces.
-* Phone number field is limited to 8 digits, starting with 6, 8 or 9, as this application is Singapore based.
+* Phone number field is limited to 8 digits, starting with 3, 6, 8 or 9, as this application is Singapore based.
 * Status field must be either uncontacted, inprogress, unsuccessful or successful
 </box>
 
