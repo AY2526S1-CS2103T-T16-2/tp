@@ -55,8 +55,8 @@ public class Company {
             return false;
         }
 
-        Company otherName = (Company) other;
-        return value.equals(otherName.value);
+        Company otherCompany = (Company) other;
+        return value.equals(otherCompany.value);
     }
 
     @Override
