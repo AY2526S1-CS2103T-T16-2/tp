@@ -20,7 +20,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String ADD_COMMAND_HELP = "add:\nAdds a person to the address book. "
                 + "\nParameters: n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS "
-                + "s/STATUS [t/TAG]...\n"
+                + "s/STATUS [pdt/PRODUCT]...\n"
                 + "Example: add n/John Doe p/98765432 c/Google e/johndoe@gmail.com a/Woodlands s/Contacted";
 
     public static final String DELETE_COMMAND_HELP = "delete:\nDeletes a person identified by the index number "
@@ -32,7 +32,7 @@ public class HelpWindow extends UiPart<Stage> {
                 + "number used in the displayed person list. "
                 + " [At least one field to edit must be provided.]\n"
                 + "Parameters: INDEX (must be a positive integer) "
-                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]...\n"
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...\n"
                 + "Example: edit 1 p/91234567";
 
     public static final String FIND_COMMAND_HELP = "find:\nFinds all persons whose names contain any of "
@@ -43,12 +43,20 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String CLEAR_COMMAND_HELP = "clear:\nClears all persons from the address book.\n"
                 + "Example: clear";
 
+    public static final String UNDO_COMMAND_HELP = "undo:\nUndo the previous command that has been undone.\n"
+                + "Example: Undo";
+
+    public static final String REDO_COMMAND_HELP = "redo:\nRedo the previous command that has been executed.\n"
+                + "Example: Redo";
+
     public static final String HELP_MESSAGE = "Here are some useful commands:\n\n"
                 + ADD_COMMAND_HELP + "\n\n"
                 + DELETE_COMMAND_HELP + "\n\n"
                 + EDIT_COMMAND_HELP + "\n\n"
                 + FIND_COMMAND_HELP + "\n\n"
                 + CLEAR_COMMAND_HELP + "\n\n"
+                + UNDO_COMMAND_HELP + "\n\n"
+                + REDO_COMMAND_HELP + "\n\n"
                 + URL_MESSAGE;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
