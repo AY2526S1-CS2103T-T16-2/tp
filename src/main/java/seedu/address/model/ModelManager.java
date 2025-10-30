@@ -96,17 +96,20 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        assert !hasPerson(target) : "target should have been removed from addressBook";
     }
 
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        assert hasPerson(person) : "Person should have been added to addressBook";
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
+        assert hasPerson(target) : "Target must exist in addressBook";
 
         addressBook.setPerson(target, editedPerson);
     }

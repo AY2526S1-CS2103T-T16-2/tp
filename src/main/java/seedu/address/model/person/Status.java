@@ -21,6 +21,9 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
+        assert status.equals("inprogress") || status.equals("unsuccessful") || status.equals("successful")
+                || status.equals("uncontacted") : "status should not be null, "
+                + "and should be one of the four accepted values";
         value = status;
     }
 
