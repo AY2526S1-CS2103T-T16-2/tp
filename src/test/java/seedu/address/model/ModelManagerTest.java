@@ -94,6 +94,67 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void undo_noPreviousState_returnsFalse() {
+        assertFalse(modelManager.canUndo());
+        assertFalse(modelManager.undo());
+    }
+
+    @Test
+    public void redo_noNextState_returnsFalse() {
+        assertFalse(modelManager.canRedo());
+        assertFalse(modelManager.redo());
+    }
+
+    @Test
+    public void undo_withPreviousState_restoresOldClientHub() {
+        ModelManager model = new ModelManager();
+
+        // Add ALICE and BENSON
+        model.addPerson(ALICE);
+        model.addPerson(BENSON);
+
+        // Check both persons exist
+        assertTrue(model.hasPerson(ALICE));
+        assertTrue(model.hasPerson(BENSON));
+
+        // Perform undo → should remove BENSON
+        assertTrue(model.undo());
+        assertTrue(model.hasPerson(ALICE));
+        assertFalse(model.hasPerson(BENSON));
+
+        // Verify that we can redo now
+        assertTrue(model.canRedo());
+    }
+
+    @Test
+    public void redo_afterUndo_restoresNextState() {
+        ModelManager model = new ModelManager();
+
+        // Add ALICE and BENSON
+        model.addPerson(ALICE);
+        model.addPerson(BENSON);
+
+        // Undo → should remove BENSON
+        model.undo();
+        assertFalse(model.hasPerson(BENSON));
+
+        // Redo → should bring BENSON back
+        assertTrue(model.canRedo());
+        assertTrue(model.redo());
+        assertTrue(model.hasPerson(BENSON));
+    }
+
+    @Test
+    public void redo_withoutUndo_returnsFalse() {
+        ModelManager model = new ModelManager();
+        model.addPerson(ALICE);
+
+        // Redo stack should be empty
+        assertFalse(model.redo());
+    }
+
+
+    @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();

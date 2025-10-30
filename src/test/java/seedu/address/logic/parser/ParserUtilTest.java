@@ -37,6 +37,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_PRODUCT_1 = "Socks";
     private static final String VALID_PRODUCT_2 = "Cheese";
+    private static final String VALID_PRODUCT_3 = "Cake";
+    private static final String VALID_PRODUCT_4 = "Sweets";
     private static final String VALID_PRODUCT_MULTIPLE_WORDS = "Blue Cheese";
     private static final String VALID_NAME_EXTRA_WHITESPACE = "Rachel       Walker";
     private static final String VALID_ADDRESS_EXTRA_WHITESPACE = "123     Main  Street    #0505";
@@ -265,10 +267,18 @@ public class ParserUtilTest {
 
     @Test
     public void parseProducts_collectionWithValidProducts_returnsProductSet() throws Exception {
-        Set<Product> actualProductSet = ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, VALID_PRODUCT_2));
-        Set<Product> expectedProductSet = new HashSet<Product>(
+        Set<Product> twoProductList = ParserUtil.parseProducts(Arrays.asList(VALID_PRODUCT_1, VALID_PRODUCT_2));
+        Set<Product> expectedTwoProductList = new HashSet<>(
                 Arrays.asList(new Product(VALID_PRODUCT_1), new Product(VALID_PRODUCT_2)));
 
-        assertEquals(expectedProductSet, actualProductSet);
+        assertEquals(expectedTwoProductList, twoProductList);
+
+        Set<Product> fourProductList = ParserUtil.parseProducts(Arrays.asList(
+                VALID_PRODUCT_3, VALID_PRODUCT_1, VALID_PRODUCT_2, VALID_PRODUCT_4));
+        Set<Product> expectedFourProductList = new HashSet<>(
+                Arrays.asList(new Product(VALID_PRODUCT_3), new Product(VALID_PRODUCT_1),
+                        new Product(VALID_PRODUCT_2), new Product(VALID_PRODUCT_4)));
+
+        assertEquals(expectedFourProductList, fourProductList);
     }
 }

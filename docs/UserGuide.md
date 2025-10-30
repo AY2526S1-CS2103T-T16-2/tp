@@ -53,7 +53,8 @@ Unsure how to navigate in the terminal?
 If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
 - Type `cd Desktop/ClientHub` into the terminal
 - You are on the right track if you see the following:
-`C:\Users\YOUR_NAME\Desktop\ClientHub`
+`C:\Users\YOUR_NAME\Desktop\ClientHub` on Windows or
+`user@XXX ClientHub` on Mac
 </box>
 
 5. Use `java -jar clienthub.jar` command to run the application.
@@ -89,10 +90,10 @@ If the `ClientHub.jar` file is in the folder `Desktop/ClientHub`:
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [s/STATUS]` can be used as `n/John Doe s/successful` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[pdt/PRODUCT]…​` can be excluded (i.e. 0 times), `pdt/Fish`, `pdt/Chicken pdt/Fish` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -116,7 +117,8 @@ Format: `help`
 
 Adds a person to ClientHub.
 
-Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]…​ [pdt/PRODUCTS]…​`
+Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS [s/STATUS] [pdt/PRODUCTS]…​`
+* If the optional `[s/STATUS]` field is not specified, it will be defaulted to `uncontacted`
 
 <box type="info" seamless>
 
@@ -183,6 +185,11 @@ Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find c/po` returns `Bernice Yu`<br>
   ![result for 'find po'](images/findPoResult.png)
+
+  <box type="tip" seamless>
+
+**Tip:** `list` can be used after `find` to view the original list of clients again
+</box>
 
 ### Deleting a person : `delete`
 

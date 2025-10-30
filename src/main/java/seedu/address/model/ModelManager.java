@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Stack;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -22,6 +23,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final Stack<AddressBook> undoStack = new Stack<>();
+    private final Stack<AddressBook> redoStack = new Stack<>();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -79,6 +82,8 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         this.addressBook.resetData(addressBook);
     }
 
@@ -95,12 +100,16 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         addressBook.removePerson(target);
         assert !hasPerson(target) : "target should have been removed from addressBook";
     }
 
     @Override
     public void addPerson(Person person) {
+        undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         assert hasPerson(person) : "Person should have been added to addressBook";
@@ -108,10 +117,46 @@ public class ModelManager implements Model {
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
+        undoStack.push(new AddressBook(this.addressBook));
+        redoStack.clear();
         requireAllNonNull(target, editedPerson);
         assert hasPerson(target) : "Target must exist in addressBook";
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    //--- Undo functionality implementation ---
+    @Override
+    public boolean undo() {
+        if (!canUndo()) {
+            return false;
+        }
+        redoStack.push(new AddressBook(this.addressBook));
+        AddressBook previous = undoStack.pop();
+        this.addressBook.resetData(previous);
+        return true;
+    }
+
+    @Override
+    public boolean canUndo() {
+        return !undoStack.isEmpty();
+    }
+
+    //--- Redo functionality implementation ---
+    @Override
+    public boolean redo() {
+        if (!canRedo()) {
+            return false;
+        }
+        undoStack.push(new AddressBook(this.addressBook));
+        AddressBook next = redoStack.pop();
+        this.addressBook.resetData(next);
+        return true;
+    }
+
+    @Override
+    public boolean canRedo() {
+        return !redoStack.isEmpty();
     }
 
     //=========== Filtered Person List Accessors =============================================================
