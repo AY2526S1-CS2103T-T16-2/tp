@@ -84,4 +84,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Reverts the model to the previous state if possible.
+     * @return true if undo was successful, false otherwise.
+     */
+    boolean undo();
+
+    /**
+     * Returns true if undo is possible.
+     */
+    boolean canUndo();
 }
