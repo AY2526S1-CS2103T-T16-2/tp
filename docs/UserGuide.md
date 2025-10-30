@@ -229,7 +229,7 @@ Undo the previous command that you have entered.
 
 * If you have no command to undo, the command will not do anything.
 
-<br>
+</box>
 
 ### Redo previous command undone: `redo`
 
@@ -241,7 +241,7 @@ Redo the command you have just undone.
 
 * If you have not undone any commands, the command will not do anything.
 
-<br>
+</box>
 
 ### Exiting the program : `exit`
 
@@ -294,9 +294,11 @@ _Details coming soon ..._
 Action     | Format, Examples
 -----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 **Add**    | `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [pdt/PRODUCT]…​` <br> e.g., `add n/James Ho p/82349123 c/Google e/jamesho@example.com a/123, Clementi Rd, 1234665 s/successful pdt/Paper`
-**Clear**  | `clear`
 **Delete** | `delete INDEX` OR `delete STATUS`<br> e.g., `delete 3` OR `delete unsuccessful`
 **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, q`find n/ja`
+**Find**   | `find [n/NAME] [c/COMPANY] [s/STATUS] [pdt/PRODUCT]`<br> e.g. `find n/James`, `find n/ja`
 **List**   | `list`
+**Undo**   | `undo`
+**Redo**   | `redo`
+**Clear**  | `clear`
 **Help**   | `help`
