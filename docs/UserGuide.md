@@ -7,7 +7,8 @@
 # ClientHub User Guide
 
 ## Introduction
-ClientHub is a **Command Line Interface (CLI)** based _contact management application_ built specifically for sales representatives.
+ClientHub is a **Command Line Interface (CLI)** based _contact management application_
+built specifically for sales representatives based in Singapore.
 > ClientHub provides a **fast, lightweight, and efficient way to track clients, manage interactions, and monitor progress**.
 
 <!-- * Table of Contents -->
@@ -119,7 +120,10 @@ Format: `add n/NAME p/PHONE_NUMBER c/COMPANY e/EMAIL a/ADDRESS s/STATUS [t/TAG]â
 
 <box type="info" seamless>
 
-ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
+* ClientHub will not allow user to add 2 entries with same Name and same Phone to prevent duplicate entries.
+* Name field will only accept alphabetic characters and spaces.
+* Phone number field is limited to 8 digits, starting with 6, 8 or 9, as this application is Singapore based.
+* Status field must be either uncontacted, inprogress, unsuccessful or successful
 </box>
 
 <br>
@@ -245,7 +249,6 @@ _Details coming soon ..._
 ## Known issues
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 --------------------------------------------------------------------------------------------------------------------
 

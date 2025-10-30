@@ -100,7 +100,10 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        assert(personToEdit != null) : "Person to edit should not be null.";
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        assert(editedPerson != null) : "Edited person should not be null.";
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
@@ -195,6 +198,7 @@ public class EditCommand extends Command {
         }
 
         public void setName(Name name) {
+            assert(name == null || name.value != null);
             this.name = name;
         }
 
@@ -203,6 +207,7 @@ public class EditCommand extends Command {
         }
 
         public void setPhone(Phone phone) {
+            assert(phone == null || phone.value != null);
             this.phone = phone;
         }
 
@@ -211,6 +216,7 @@ public class EditCommand extends Command {
         }
 
         public void setEmail(Email email) {
+            assert(email == null || email.value != null);
             this.email = email;
         }
 
@@ -219,6 +225,7 @@ public class EditCommand extends Command {
         }
 
         public void setCompany(Company company) {
+            assert(company == null || company.value != null);
             this.company = company;
         }
 
@@ -227,6 +234,7 @@ public class EditCommand extends Command {
         }
 
         public void setAddress(Address address) {
+            assert(address == null || address.value != null);
             this.address = address;
         }
 
@@ -235,12 +243,14 @@ public class EditCommand extends Command {
         }
 
         public void setStatus(Status status) {
+            assert(status == null || status.value != null);
             this.status = status;
         }
 
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
+
         /**
          * Sets {@code products} to this object's {@code products}.
          * A defensive copy of {@code products} is used internally.
