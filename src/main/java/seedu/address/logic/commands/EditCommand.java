@@ -52,8 +52,12 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PRODUCT + "PRODUCTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_PRODUCT + "Beef "
+            + PREFIX_PRODUCT + "Potato";
+
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -65,14 +69,17 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PRODUCT + "PRODUCTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_PRODUCT + "Beef "
+            + PREFIX_PRODUCT + "Potato";
+
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
+     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {

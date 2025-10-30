@@ -30,14 +30,20 @@ public class ParserUtilTest {
     private static final String INVALID_PRODUCT = "#Socks";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "82345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_COMPANY = "Microsoft";
+    private static final String VALID_COMPANY_MULITPLE_WORDS = "National University of Singapore";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_PRODUCT_1 = "Socks";
     private static final String VALID_PRODUCT_2 = "Cheese";
     private static final String VALID_PRODUCT_3 = "Cake";
     private static final String VALID_PRODUCT_4 = "Sweets";
+    private static final String VALID_PRODUCT_MULTIPLE_WORDS = "Blue Cheese";
+    private static final String VALID_NAME_EXTRA_WHITESPACE = "Rachel       Walker";
+    private static final String VALID_ADDRESS_EXTRA_WHITESPACE = "123     Main  Street    #0505";
+    private static final String VALID_COMPANY_EXTRA_WHITESPACE = "National   University    of      Singapore";
+    private static final String VALID_PRODUCT_EXTRA_WHITESPACE = "Blue    Cheese";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -81,6 +87,17 @@ public class ParserUtilTest {
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+
+    @Test
+    public void parseName_extraWhitespace_returnsTrimmedName() throws Exception {
+        // Whitespaces between first and last name
+        Name expectedName = new Name(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME_EXTRA_WHITESPACE));
+
+        // Additional leading and trailing whitespaces
+        String nameWithWhitespace = WHITESPACE + VALID_NAME_EXTRA_WHITESPACE + WHITESPACE;
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
     }
 
@@ -131,6 +148,17 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseCompany_extraWhitespace_returnsTrimmedCompany() throws Exception {
+        // Whitespaces between different words
+        Company expectedCompany = new Company(VALID_COMPANY_MULITPLE_WORDS);
+        assertEquals(expectedCompany, ParserUtil.parseCompany(VALID_COMPANY_EXTRA_WHITESPACE));
+
+        // Additional leading and trailing whitespaces
+        String companyWithWhitespace = WHITESPACE + VALID_COMPANY_EXTRA_WHITESPACE + WHITESPACE;
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
+    }
+
+    @Test
     public void parseAddress_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
     }
@@ -150,6 +178,17 @@ public class ParserUtilTest {
     public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
         Address expectedAddress = new Address(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
+    }
+
+    @Test
+    public void parseAddress_extraWhitespace_returnsTrimmedAddress() throws Exception {
+        // Whitespaces between different words
+        Address expectedAddress = new Address(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS_EXTRA_WHITESPACE));
+
+        // Additional leading and trailing whitespaces
+        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS_EXTRA_WHITESPACE + WHITESPACE;
         assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
@@ -182,7 +221,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseProduct_invalidValue_throwsParseException() {
+    public void parseProduct_invalidValue_throwsParseException() 
         assertThrows(ParseException.class, () -> ParserUtil.parseProduct(INVALID_PRODUCT));
     }
 
@@ -196,6 +235,17 @@ public class ParserUtilTest {
     public void parseProduct_validValueWithWhitespace_returnsTrimmedProduct() throws Exception {
         String productWithWhitespace = WHITESPACE + VALID_PRODUCT_1 + WHITESPACE;
         Product expectedProduct = new Product(VALID_PRODUCT_1);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(productWithWhitespace));
+    }
+
+    @Test
+    public void parseProduct_extraWhitespace_returnsTrimmedProduct() throws Exception {
+        // Whitespaces between different words
+        Product expectedProduct = new Product(VALID_PRODUCT_MULTIPLE_WORDS);
+        assertEquals(expectedProduct, ParserUtil.parseProduct(VALID_PRODUCT_EXTRA_WHITESPACE));
+
+        // Additional leading and trailing whitespaces
+        String productWithWhitespace = WHITESPACE + VALID_PRODUCT_EXTRA_WHITESPACE + WHITESPACE;
         assertEquals(expectedProduct, ParserUtil.parseProduct(productWithWhitespace));
     }
 
