@@ -36,7 +36,7 @@ public class HelpWindow extends UiPart<Stage> {
                 + "number used in the displayed person list. "
                 + "\n[At least one field to edit must be provided.]\n"
                 + "Parameters: INDEX (must be a positive integer) "
-                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [t/TAG]...\n"
+                + "[n/NAME] [p/PHONE_NUMBER] [c/COMPANY] [e/EMAIL] [a/ADDRESS] [s/STATUS] [pdt/PRODUCT]...\n"
                 + "Note: Editing the product field erases all products, replacing it with your edited products.\n"
                 + "Example:\n1. edit 1 p/91234567 -> edit the phone number of the person at index 1 to be 91234567"
                 + "\n2. edit 1 pdt/chicken -> replaces all products tag to person 1 with just \"chicken\" as product";
