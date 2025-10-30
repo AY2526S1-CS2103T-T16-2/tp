@@ -16,6 +16,7 @@ public class RedoCommand extends Command {
         if (model == null) {
             throw new CommandException("Model cannot be null.");
         }
+        assert(model != null) : "Model should not be null.";
         if (!model.canRedo()) {
             throw new CommandException(MESSAGE_NOTHING_TO_REDO);
         }
