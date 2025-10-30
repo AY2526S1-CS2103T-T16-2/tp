@@ -11,7 +11,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Product {
 
     public static final String MESSAGE_CONSTRAINTS = "Product's names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum} ]+";
+    public static final String VALIDATION_REGEX = "^[\\p{Alnum}]+( [\\p{Alnum}]+)*$";
 
     public final String productName;
 

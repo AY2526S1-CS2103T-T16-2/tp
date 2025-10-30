@@ -47,12 +47,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
+     * Extra whitespace is also removed, leaving a
+     * single space between words.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
-        String trimmedName = name.trim();
+        String trimmedName = name.trim().replaceAll("\\s+", " ");
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -77,12 +79,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String company} into a {@code Company}.
      * Leading and trailing whitespaces will be trimmed.
+     * Extra whitespace is also removed, leaving a
+     * single space between words.
      *
      * @throws ParseException if the given {@code company} is invalid.
      */
     public static Company parseCompany(String company) throws ParseException {
         requireNonNull(company);
-        String trimmedCompany = company.trim();
+        String trimmedCompany = company.trim().replaceAll("\\s+", " ");
         if (!Company.isValidCompanyName(trimmedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);
         }
@@ -92,12 +96,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     * Extra whitespace is also removed, leaving a
+     * single space between words.
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
-        String trimmedAddress = address.trim();
+        String trimmedAddress = address.trim().replaceAll("\\s+", " ");
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -137,12 +143,14 @@ public class ParserUtil {
     /**
      * Parses a {@code String product} into a {@code product}.
      * Leading and trailing whitespaces will be trimmed.
+     * Extra whitespace is also removed, leaving a
+     * single space between words.
      *
      * @throws ParseException if the given {@code product} is invalid.
      */
     public static Product parseProduct(String product) throws ParseException {
         requireNonNull(product);
-        String trimmedProduct = product.trim();
+        String trimmedProduct = product.trim().replaceAll("\\s+", " ");
         if (!Product.isValidProductName(trimmedProduct)) {
             throw new ParseException(Product.MESSAGE_CONSTRAINTS);
         }

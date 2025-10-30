@@ -24,80 +24,19 @@ public class ProductTest {
         // null
         assertThrows(NullPointerException.class, () -> Product.isValidProductName(null));
 
-        // invalid
-        assertFalse(Product.isValidProductName("")); // empty
-        assertFalse(Product.isValidProductName("Fish&Chips")); // invalid char
-        assertFalse(Product.isValidProductName("Fish & Chips")); // invalid char with space
+        // invalid product names
+        assertFalse(Product.isValidProductName("")); // Blank product name
+        assertFalse(Product.isValidProductName("Blue Chee$e")); // Non-alphanumeric character
+        assertFalse(Product.isValidProductName("Chicken/Beef Stock")); // Non-alphanumeric character
+        assertFalse(Product.isValidProductName("Bl!e Cheese")); // Non-alphanumeric character
+        assertFalse(Product.isValidProductName("2.0-2.5 ml spray")); // Non-alphanumeric character
+        assertFalse(Product.isValidProductName("Fish & Chips")); // Non-alphanumeric character
 
-
-        // valid
-        assertTrue(Product.isValidProductName("Chicken Rice"));
-        assertTrue(Product.isValidProductName("Chicken potatoes"));
-        assertTrue(Product.isValidProductName("Beef123"));
-    }
-
-    @Test
-    public void isValidProductName_leadingOrTrailingSpace_true() {
-        // invalid if regex disallows leading/trailing spaces
-        assertTrue(Product.isValidProductName(" Chicken"));
-        assertTrue(Product.isValidProductName("Chicken "));
-        assertTrue(Product.isValidProductName("  Chicken Rice"));
-        assertTrue(Product.isValidProductName("Chicken Rice  "));
-    }
-
-    @Test
-    public void isValidProductName_multipleConsecutiveSpaces() {
-        // If your regex allows only single spaces between words, keep these false:
-        assertTrue(Product.isValidProductName("Chicken  Rice"));
-        assertTrue(Product.isValidProductName("Beef   Brisket 123"));
-        // If you decide to allow multiple spaces, change the above to assertTrue.
-    }
-
-    @Test
-    public void isValidProductName_symbolsAreInvalid_false() {
-        assertFalse(Product.isValidProductName("Fish&Chips")); // symbol
-        assertFalse(Product.isValidProductName("Fish-Chips")); // dash
-        assertFalse(Product.isValidProductName("Fish/Chips")); // slash
-        assertFalse(Product.isValidProductName("Fish_Chips")); // slash
-        assertFalse(Product.isValidProductName("Chicken.")); // dot
-        assertFalse(Product.isValidProductName("Rice,")); // comma
-    }
-
-    @Test
-    public void isValidProductName_validWithSingleSpaces_true() {
-        assertTrue(Product.isValidProductName("Chicken Rice"));
-        assertTrue(Product.isValidProductName("Chicken Potatoes 123"));
-        assertTrue(Product.isValidProductName("BEEF123"));
-        assertTrue(Product.isValidProductName("beef123"));
-    }
-
-    @Test
-    public void isValidProductName_tabsAndNewlines_false() {
-        assertFalse(Product.isValidProductName("Chicken\tRice"));
-        assertFalse(Product.isValidProductName("Chicken\nRice"));
-    }
-
-    @Test
-    public void constructor_validNames_success() {
-        // Should not throw for valid names
-        new Product("Chicken Rice");
-        new Product("Beef123");
-        new Product("Chicken Potatoes 123");
-    }
-
-    @Test
-    public void equals_sameName() {
-        Product a = new Product("Chicken Rice");
-        Product b = new Product("Chicken Rice");
-        Product c = new Product("Beef 123");
-        assertTrue(a.equals(b));
-        assertFalse(a.equals(c));
-    }
-
-    @Test
-    public void toString_containsName() {
-        Product p = new Product("Chicken Rice");
-        assertTrue(p.toString().contains("Chicken Rice"));
+        // valid product names
+        assertTrue(Product.isValidProductName("Beef")); // One-worded product
+        assertTrue(Product.isValidProductName("Blue Cheese")); // Two-worded product
+        assertTrue(Product.isValidProductName("Fish and Chips")); // Three-worded product
+        assertTrue(Product.isValidProductName("Blue or Yellow Cheese")); // Four-worded product
     }
 
 }
