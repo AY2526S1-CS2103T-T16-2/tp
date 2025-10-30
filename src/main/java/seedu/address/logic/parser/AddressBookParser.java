@@ -77,10 +77,10 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case "undo":
+        case UndoCommand.COMMAND_WORD:
             return new seedu.address.logic.commands.UndoCommand();
 
-        case "redo":
+        case RedoCommand.COMMAND_WORD:
             return new seedu.address.logic.commands.RedoCommand();
 
         default:
