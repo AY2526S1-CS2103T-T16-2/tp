@@ -18,13 +18,14 @@ public class Messages {
             + " inprogress, successful, unsuccessful";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_MANY_PERSONS_FOUND_OVERVIEW =
-            "%1$d persons found matching your description!";
+            "%1$d persons found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_ONE_PERSON_FOUND_OVERVIEW =
-            "1 person found matching your description!";
+            "1 person found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_NO_PERSONS_FOUND_OVERVIEW =
-            "No person was found matching your description!";
+            "No person was found matching your description! Enter 'list' command to view all clients again!";
     public static final String MESSAGE_DUPLICATE_FIELDS = "Multiple values specified "
             + "for the following single-valued field(s): ";
+    public static final String MESSAGE_EMPTY_FIELDS = "Following fields should not be empty: ";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -41,21 +42,18 @@ public class Messages {
      * Formats the {@code person} for display to the user.
      */
     public static String format(Person person) {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(person.getName())
-                .append("; Phone: ")
-                .append(person.getPhone())
-                .append("; Company: ")
-                .append(person.getCompany())
-                .append("; Email: ")
-                .append(person.getEmail())
-                .append("; Address: ")
-                .append(person.getAddress())
-                .append("; Status: ")
-                .append(person.getStatus())
-                .append("; Products: ");
-        person.getProducts().forEach(builder::append);
-        return builder.toString();
+        return new StringBuilder()
+                .append(person.getName())
+                .append("; Phone: ").append(person.getPhone())
+                .append("; Company: ").append(person.getCompany())
+                .append("; Email: ").append(person.getEmail())
+                .append("; Address: ").append(person.getAddress())
+                .append("; Status: ").append(person.getStatus())
+                .append("; Products: ")
+                .append(person.getProducts().stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", ")))
+                .toString();
     }
 
 }

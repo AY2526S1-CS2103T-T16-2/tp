@@ -30,7 +30,7 @@ public class ParserUtilTest {
     private static final String INVALID_PRODUCT = "#Socks";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "82345678";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_COMPANY = "Microsoft";
     private static final String VALID_COMPANY_MULITPLE_WORDS = "National University of Singapore";

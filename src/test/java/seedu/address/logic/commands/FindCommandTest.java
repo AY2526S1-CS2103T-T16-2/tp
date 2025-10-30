@@ -18,6 +18,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.FindCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -101,6 +103,14 @@ public class FindCommandTest {
     public void execute_nullModel_assertionError() {
         FindCommand command = new FindCommand(null);
         assertThrows(AssertionError.class, () -> command.execute(null));
+    }
+
+    @Test
+    public void parse_multipleEmptyFields_throwsParseException() {
+        String userInput = "n/  c/  s/  pdt/";
+        assertThrows(ParseException.class, () -> {
+            new FindCommandParser().parse(userInput);
+        });
     }
 
     @Test

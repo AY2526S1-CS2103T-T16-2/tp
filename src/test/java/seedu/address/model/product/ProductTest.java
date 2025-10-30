@@ -21,7 +21,7 @@ public class ProductTest {
 
     @Test
     public void isValidProductName() {
-        // null product name
+        // null
         assertThrows(NullPointerException.class, () -> Product.isValidProductName(null));
 
         // invalid product names
