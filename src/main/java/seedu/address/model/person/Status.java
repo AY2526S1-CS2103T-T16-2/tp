@@ -21,9 +21,10 @@ public class Status {
     public Status(String status) {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
-        assert status.equals("inprogress") || status.equals("unsuccessful") || status.equals("successful")
-                || status.equals("uncontacted") : "status should not be null, "
-                + "and should be one of the four accepted values";
+        assert status.equalsIgnoreCase("inprogress") || status.equalsIgnoreCase("unsuccessful")
+                || status.equalsIgnoreCase("successful")
+                || status.equalsIgnoreCase("uncontacted")
+                : "status should not be null, and should be one of the four accepted values";
         value = status;
     }
 
