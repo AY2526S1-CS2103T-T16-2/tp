@@ -119,6 +119,11 @@ public class HelpWindow extends UiPart<Stage> {
         logger.fine("Showing help page about the application.");
         getRoot().show();
         getRoot().centerOnScreen();
+
+        // Choose between Light and Dark theme
+        ThemeManager themes = new ThemeManager();
+        Theme theme = SystemThemeDetector.detect();
+        themes.applyHelp(getRoot().getScene(), theme);
     }
 
     /**
