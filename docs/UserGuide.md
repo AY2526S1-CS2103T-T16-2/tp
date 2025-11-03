@@ -276,6 +276,8 @@ Examples:
 
 [Back to Table of Contents](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Adding/Editing a student record: `record`
 Creates or updates the weekly record for a specific student.
 
@@ -320,6 +322,8 @@ This command is useful for correcting data entry errors, such as when a record w
 </div>
 
 [Back to Table of Contents](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing student record: `view`
 
