@@ -253,13 +253,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]…​`
 
 </div>
 
+<div style="page-break-after: always;"></div>
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 [Back to Table of Contents](#table-of-contents)
-
-<div style="page-break-after: always;"></div>
 
 ### Deleting a student : `delete`
 
