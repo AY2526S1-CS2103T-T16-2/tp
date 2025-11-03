@@ -181,7 +181,9 @@ public class ModelManager implements Model {
      */
     private double getAttendancePercentage(Student student) {
         seedu.address.model.record.Record[] records = student.getRecordList().records;
-        if (this.getTotalRecord(student) == 0) { return 0; }
+        if (this.getTotalRecord(student) == 0) {
+            return 0;
+        }
         return Arrays.stream(records)
                 .mapToDouble(record -> {
                     try {
@@ -199,7 +201,9 @@ public class ModelManager implements Model {
      */
     private double getParticipationPercentage(Student student) {
         seedu.address.model.record.Record[] records = student.getRecordList().records;
-        if (this.getTotalRecord(student) == 0) { return 0; }
+        if (this.getTotalRecord(student) == 0) {
+            return 0;
+        }
         return Arrays.stream(records)
                 .mapToDouble(record -> {
                     try {
@@ -217,7 +221,9 @@ public class ModelManager implements Model {
      */
     private double getSubmissionPercentage(Student student) {
         seedu.address.model.record.Record[] records = student.getRecordList().records;
-        if (this.getTotalRecord(student) == 0) { return 0; }
+        if (this.getTotalRecord(student) == 0) {
+            return 0;
+        }
         return Arrays.stream(records)
                 .mapToDouble(record -> {
                     try {
@@ -234,7 +240,9 @@ public class ModelManager implements Model {
         for (int i = 0; i < student.getRecordList().records.length; i++) {
             Index currentIndex = Index.fromZeroBased(i);
             Record record = student.getRecordList().getRecord(currentIndex);
-            if (record == null) { continue; }
+            if (record == null) {
+                continue;
+            }
             totalRecord += 1;
         }
         return totalRecord;

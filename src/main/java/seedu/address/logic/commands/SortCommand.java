@@ -16,10 +16,8 @@ public class SortCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort all students based on attendance or participation or submission percentages.\n"
-            + "Parameters: " + PREFIX_SORT_BY + PREFIX_SORT_ATTENDANCE
-            + " for attendance or " + PREFIX_SORT_BY + PREFIX_SORT_PARTICIPATION
-            + " for participation or " + PREFIX_SORT_BY + PREFIX_SORT_SUBMISSION
-            + " for submission\n"
+            + "Parameters: " + "{" + PREFIX_SORT_BY + PREFIX_SORT_ATTENDANCE + ","
+            + PREFIX_SORT_BY + PREFIX_SORT_PARTICIPATION + "," + PREFIX_SORT_BY + PREFIX_SORT_SUBMISSION + "}\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SORT_BY + PREFIX_SORT_ATTENDANCE
             + ", " + COMMAND_WORD + " " + PREFIX_SORT_BY + PREFIX_SORT_PARTICIPATION
             + ", " + COMMAND_WORD + " " + PREFIX_SORT_BY + PREFIX_SORT_SUBMISSION;
